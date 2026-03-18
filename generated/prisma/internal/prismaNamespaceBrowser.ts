@@ -51,7 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  crew: 'crew',
+  aircraftType: 'aircraftType',
+  flight: 'flight',
+  flightVoucherSeatNumbers: 'flightVoucherSeatNumbers',
+  flightAircraftType: 'flightAircraftType',
+  seat: 'seat'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -67,13 +72,65 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const CrewScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  password: 'password'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type CrewScalarFieldEnum = (typeof CrewScalarFieldEnum)[keyof typeof CrewScalarFieldEnum]
+
+
+export const AircraftTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  seatType: 'seatType',
+  seatNumber: 'seatNumber'
+} as const
+
+export type AircraftTypeScalarFieldEnum = (typeof AircraftTypeScalarFieldEnum)[keyof typeof AircraftTypeScalarFieldEnum]
+
+
+export const FlightScalarFieldEnum = {
+  id: 'id',
+  flightNumber: 'flightNumber',
+  departure: 'departure',
+  arrival: 'arrival',
+  date: 'date',
+  crewId: 'crewId'
+} as const
+
+export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum]
+
+
+export const FlightVoucherSeatNumbersScalarFieldEnum = {
+  id: 'id',
+  flightId: 'flightId',
+  seatId: 'seatId'
+} as const
+
+export type FlightVoucherSeatNumbersScalarFieldEnum = (typeof FlightVoucherSeatNumbersScalarFieldEnum)[keyof typeof FlightVoucherSeatNumbersScalarFieldEnum]
+
+
+export const FlightAircraftTypeScalarFieldEnum = {
+  id: 'id',
+  flightId: 'flightId',
+  aircraftTypeId: 'aircraftTypeId'
+} as const
+
+export type FlightAircraftTypeScalarFieldEnum = (typeof FlightAircraftTypeScalarFieldEnum)[keyof typeof FlightAircraftTypeScalarFieldEnum]
+
+
+export const SeatScalarFieldEnum = {
+  id: 'id',
+  seatNumber: 'seatNumber',
+  class: 'class',
+  isAvailable: 'isAvailable',
+  aircraftTypeId: 'aircraftTypeId'
+} as const
+
+export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof SeatScalarFieldEnum]
 
 
 export const SortOrder = {

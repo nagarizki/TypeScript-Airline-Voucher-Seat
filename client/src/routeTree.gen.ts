@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SeatAssignmentRouteImport } from './routes/seat-assignment'
+import { Route as AvailableFlightRouteImport } from './routes/available-flight'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SeatAssignmentRoute = SeatAssignmentRouteImport.update({
   id: '/seat-assignment',
   path: '/seat-assignment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvailableFlightRoute = AvailableFlightRouteImport.update({
+  id: '/available-flight',
+  path: '/available-flight',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/seat-assignment'
+  fullPaths: '/' | '/available-flight' | '/seat-assignment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/seat-assignment'
-  id: '__root__' | '/' | '/seat-assignment'
+  to: '/' | '/available-flight' | '/seat-assignment'
+  id: '__root__' | '/' | '/available-flight' | '/seat-assignment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvailableFlightRoute: typeof AvailableFlightRoute
   SeatAssignmentRoute: typeof SeatAssignmentRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/seat-assignment'
       fullPath: '/seat-assignment'
       preLoaderRoute: typeof SeatAssignmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/available-flight': {
+      id: '/available-flight'
+      path: '/available-flight'
+      fullPath: '/available-flight'
+      preLoaderRoute: typeof AvailableFlightRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvailableFlightRoute: AvailableFlightRoute,
   SeatAssignmentRoute: SeatAssignmentRoute,
 }
 export const routeTree = rootRouteImport

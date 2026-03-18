@@ -384,7 +384,12 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  crew: 'crew',
+  aircraftType: 'aircraftType',
+  flight: 'flight',
+  flightVoucherSeatNumbers: 'flightVoucherSeatNumbers',
+  flightAircraftType: 'flightAircraftType',
+  seat: 'seat'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,81 +405,451 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "crew" | "aircraftType" | "flight" | "flightVoucherSeatNumbers" | "flightAircraftType" | "seat"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    User: {
-      payload: Prisma.$UserPayload<ExtArgs>
-      fields: Prisma.UserFieldRefs
+    crew: {
+      payload: Prisma.$crewPayload<ExtArgs>
+      fields: Prisma.crewFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.UserFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null
+          args: Prisma.crewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         findFirst: {
-          args: Prisma.UserFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null
+          args: Prisma.crewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         findMany: {
-          args: Prisma.UserFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+          args: Prisma.crewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>[]
         }
         create: {
-          args: Prisma.UserCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         createMany: {
-          args: Prisma.UserCreateManyArgs<ExtArgs>
+          args: Prisma.crewCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+          args: Prisma.crewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>[]
         }
         delete: {
-          args: Prisma.UserDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         update: {
-          args: Prisma.UserUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         deleteMany: {
-          args: Prisma.UserDeleteManyArgs<ExtArgs>
+          args: Prisma.crewDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.UserUpdateManyArgs<ExtArgs>
+          args: Prisma.crewUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[]
+          args: Prisma.crewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>[]
         }
         upsert: {
-          args: Prisma.UserUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>
+          args: Prisma.crewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$crewPayload>
         }
         aggregate: {
-          args: Prisma.UserAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUser>
+          args: Prisma.CrewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCrew>
         }
         groupBy: {
-          args: Prisma.UserGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserGroupByOutputType>[]
+          args: Prisma.crewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrewGroupByOutputType>[]
         }
         count: {
-          args: Prisma.UserCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+          args: Prisma.crewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CrewCountAggregateOutputType> | number
+        }
+      }
+    }
+    aircraftType: {
+      payload: Prisma.$aircraftTypePayload<ExtArgs>
+      fields: Prisma.aircraftTypeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.aircraftTypeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.aircraftTypeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        findFirst: {
+          args: Prisma.aircraftTypeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.aircraftTypeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        findMany: {
+          args: Prisma.aircraftTypeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>[]
+        }
+        create: {
+          args: Prisma.aircraftTypeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        createMany: {
+          args: Prisma.aircraftTypeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.aircraftTypeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>[]
+        }
+        delete: {
+          args: Prisma.aircraftTypeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        update: {
+          args: Prisma.aircraftTypeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        deleteMany: {
+          args: Prisma.aircraftTypeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.aircraftTypeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.aircraftTypeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>[]
+        }
+        upsert: {
+          args: Prisma.aircraftTypeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$aircraftTypePayload>
+        }
+        aggregate: {
+          args: Prisma.AircraftTypeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAircraftType>
+        }
+        groupBy: {
+          args: Prisma.aircraftTypeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AircraftTypeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.aircraftTypeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AircraftTypeCountAggregateOutputType> | number
+        }
+      }
+    }
+    flight: {
+      payload: Prisma.$flightPayload<ExtArgs>
+      fields: Prisma.flightFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.flightFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.flightFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        findFirst: {
+          args: Prisma.flightFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.flightFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        findMany: {
+          args: Prisma.flightFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>[]
+        }
+        create: {
+          args: Prisma.flightCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        createMany: {
+          args: Prisma.flightCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.flightCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>[]
+        }
+        delete: {
+          args: Prisma.flightDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        update: {
+          args: Prisma.flightUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        deleteMany: {
+          args: Prisma.flightDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.flightUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.flightUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>[]
+        }
+        upsert: {
+          args: Prisma.flightUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightPayload>
+        }
+        aggregate: {
+          args: Prisma.FlightAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFlight>
+        }
+        groupBy: {
+          args: Prisma.flightGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.flightCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightCountAggregateOutputType> | number
+        }
+      }
+    }
+    flightVoucherSeatNumbers: {
+      payload: Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>
+      fields: Prisma.flightVoucherSeatNumbersFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.flightVoucherSeatNumbersFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.flightVoucherSeatNumbersFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        findFirst: {
+          args: Prisma.flightVoucherSeatNumbersFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.flightVoucherSeatNumbersFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        findMany: {
+          args: Prisma.flightVoucherSeatNumbersFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>[]
+        }
+        create: {
+          args: Prisma.flightVoucherSeatNumbersCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        createMany: {
+          args: Prisma.flightVoucherSeatNumbersCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.flightVoucherSeatNumbersCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>[]
+        }
+        delete: {
+          args: Prisma.flightVoucherSeatNumbersDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        update: {
+          args: Prisma.flightVoucherSeatNumbersUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        deleteMany: {
+          args: Prisma.flightVoucherSeatNumbersDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.flightVoucherSeatNumbersUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.flightVoucherSeatNumbersUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>[]
+        }
+        upsert: {
+          args: Prisma.flightVoucherSeatNumbersUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightVoucherSeatNumbersPayload>
+        }
+        aggregate: {
+          args: Prisma.FlightVoucherSeatNumbersAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFlightVoucherSeatNumbers>
+        }
+        groupBy: {
+          args: Prisma.flightVoucherSeatNumbersGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightVoucherSeatNumbersGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.flightVoucherSeatNumbersCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightVoucherSeatNumbersCountAggregateOutputType> | number
+        }
+      }
+    }
+    flightAircraftType: {
+      payload: Prisma.$flightAircraftTypePayload<ExtArgs>
+      fields: Prisma.flightAircraftTypeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.flightAircraftTypeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.flightAircraftTypeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        findFirst: {
+          args: Prisma.flightAircraftTypeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.flightAircraftTypeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        findMany: {
+          args: Prisma.flightAircraftTypeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>[]
+        }
+        create: {
+          args: Prisma.flightAircraftTypeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        createMany: {
+          args: Prisma.flightAircraftTypeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.flightAircraftTypeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>[]
+        }
+        delete: {
+          args: Prisma.flightAircraftTypeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        update: {
+          args: Prisma.flightAircraftTypeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        deleteMany: {
+          args: Prisma.flightAircraftTypeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.flightAircraftTypeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.flightAircraftTypeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>[]
+        }
+        upsert: {
+          args: Prisma.flightAircraftTypeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$flightAircraftTypePayload>
+        }
+        aggregate: {
+          args: Prisma.FlightAircraftTypeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFlightAircraftType>
+        }
+        groupBy: {
+          args: Prisma.flightAircraftTypeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightAircraftTypeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.flightAircraftTypeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FlightAircraftTypeCountAggregateOutputType> | number
+        }
+      }
+    }
+    seat: {
+      payload: Prisma.$seatPayload<ExtArgs>
+      fields: Prisma.seatFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.seatFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.seatFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        findFirst: {
+          args: Prisma.seatFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.seatFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        findMany: {
+          args: Prisma.seatFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>[]
+        }
+        create: {
+          args: Prisma.seatCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        createMany: {
+          args: Prisma.seatCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.seatCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>[]
+        }
+        delete: {
+          args: Prisma.seatDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        update: {
+          args: Prisma.seatUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        deleteMany: {
+          args: Prisma.seatDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.seatUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.seatUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>[]
+        }
+        upsert: {
+          args: Prisma.seatUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$seatPayload>
+        }
+        aggregate: {
+          args: Prisma.SeatAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSeat>
+        }
+        groupBy: {
+          args: Prisma.seatGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SeatGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.seatCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SeatCountAggregateOutputType> | number
         }
       }
     }
@@ -514,13 +889,65 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const CrewScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  password: 'password'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type CrewScalarFieldEnum = (typeof CrewScalarFieldEnum)[keyof typeof CrewScalarFieldEnum]
+
+
+export const AircraftTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  seatType: 'seatType',
+  seatNumber: 'seatNumber'
+} as const
+
+export type AircraftTypeScalarFieldEnum = (typeof AircraftTypeScalarFieldEnum)[keyof typeof AircraftTypeScalarFieldEnum]
+
+
+export const FlightScalarFieldEnum = {
+  id: 'id',
+  flightNumber: 'flightNumber',
+  departure: 'departure',
+  arrival: 'arrival',
+  date: 'date',
+  crewId: 'crewId'
+} as const
+
+export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum]
+
+
+export const FlightVoucherSeatNumbersScalarFieldEnum = {
+  id: 'id',
+  flightId: 'flightId',
+  seatId: 'seatId'
+} as const
+
+export type FlightVoucherSeatNumbersScalarFieldEnum = (typeof FlightVoucherSeatNumbersScalarFieldEnum)[keyof typeof FlightVoucherSeatNumbersScalarFieldEnum]
+
+
+export const FlightAircraftTypeScalarFieldEnum = {
+  id: 'id',
+  flightId: 'flightId',
+  aircraftTypeId: 'aircraftTypeId'
+} as const
+
+export type FlightAircraftTypeScalarFieldEnum = (typeof FlightAircraftTypeScalarFieldEnum)[keyof typeof FlightAircraftTypeScalarFieldEnum]
+
+
+export const SeatScalarFieldEnum = {
+  id: 'id',
+  seatNumber: 'seatNumber',
+  class: 'class',
+  isAvailable: 'isAvailable',
+  aircraftTypeId: 'aircraftTypeId'
+} as const
+
+export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof SeatScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -556,6 +983,27 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 /**
@@ -653,7 +1101,12 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  user?: Prisma.UserOmit
+  crew?: Prisma.crewOmit
+  aircraftType?: Prisma.aircraftTypeOmit
+  flight?: Prisma.flightOmit
+  flightVoucherSeatNumbers?: Prisma.flightVoucherSeatNumbersOmit
+  flightAircraftType?: Prisma.flightAircraftTypeOmit
+  seat?: Prisma.seatOmit
 }
 
 /* Types for Logging */

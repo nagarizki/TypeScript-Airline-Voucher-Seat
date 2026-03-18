@@ -1,0 +1,1195 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace";
+/**
+ * Model flightVoucherSeatNumbers
+ *
+ */
+export type flightVoucherSeatNumbersModel = runtime.Types.Result.DefaultSelection<Prisma.$flightVoucherSeatNumbersPayload>;
+export type AggregateFlightVoucherSeatNumbers = {
+    _count: FlightVoucherSeatNumbersCountAggregateOutputType | null;
+    _min: FlightVoucherSeatNumbersMinAggregateOutputType | null;
+    _max: FlightVoucherSeatNumbersMaxAggregateOutputType | null;
+};
+export type FlightVoucherSeatNumbersMinAggregateOutputType = {
+    id: string | null;
+    flightId: string | null;
+    seatId: string | null;
+};
+export type FlightVoucherSeatNumbersMaxAggregateOutputType = {
+    id: string | null;
+    flightId: string | null;
+    seatId: string | null;
+};
+export type FlightVoucherSeatNumbersCountAggregateOutputType = {
+    id: number;
+    flightId: number;
+    seatId: number;
+    _all: number;
+};
+export type FlightVoucherSeatNumbersMinAggregateInputType = {
+    id?: true;
+    flightId?: true;
+    seatId?: true;
+};
+export type FlightVoucherSeatNumbersMaxAggregateInputType = {
+    id?: true;
+    flightId?: true;
+    seatId?: true;
+};
+export type FlightVoucherSeatNumbersCountAggregateInputType = {
+    id?: true;
+    flightId?: true;
+    seatId?: true;
+    _all?: true;
+};
+export type FlightVoucherSeatNumbersAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which flightVoucherSeatNumbers to aggregate.
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of flightVoucherSeatNumbers to fetch.
+     */
+    orderBy?: Prisma.flightVoucherSeatNumbersOrderByWithRelationInput | Prisma.flightVoucherSeatNumbersOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` flightVoucherSeatNumbers from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` flightVoucherSeatNumbers.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned flightVoucherSeatNumbers
+    **/
+    _count?: true | FlightVoucherSeatNumbersCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: FlightVoucherSeatNumbersMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: FlightVoucherSeatNumbersMaxAggregateInputType;
+};
+export type GetFlightVoucherSeatNumbersAggregateType<T extends FlightVoucherSeatNumbersAggregateArgs> = {
+    [P in keyof T & keyof AggregateFlightVoucherSeatNumbers]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateFlightVoucherSeatNumbers[P]> : Prisma.GetScalarType<T[P], AggregateFlightVoucherSeatNumbers[P]>;
+};
+export type flightVoucherSeatNumbersGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    orderBy?: Prisma.flightVoucherSeatNumbersOrderByWithAggregationInput | Prisma.flightVoucherSeatNumbersOrderByWithAggregationInput[];
+    by: Prisma.FlightVoucherSeatNumbersScalarFieldEnum[] | Prisma.FlightVoucherSeatNumbersScalarFieldEnum;
+    having?: Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: FlightVoucherSeatNumbersCountAggregateInputType | true;
+    _min?: FlightVoucherSeatNumbersMinAggregateInputType;
+    _max?: FlightVoucherSeatNumbersMaxAggregateInputType;
+};
+export type FlightVoucherSeatNumbersGroupByOutputType = {
+    id: string;
+    flightId: string;
+    seatId: string;
+    _count: FlightVoucherSeatNumbersCountAggregateOutputType | null;
+    _min: FlightVoucherSeatNumbersMinAggregateOutputType | null;
+    _max: FlightVoucherSeatNumbersMaxAggregateOutputType | null;
+};
+type GetFlightVoucherSeatNumbersGroupByPayload<T extends flightVoucherSeatNumbersGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<FlightVoucherSeatNumbersGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof FlightVoucherSeatNumbersGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], FlightVoucherSeatNumbersGroupByOutputType[P]> : Prisma.GetScalarType<T[P], FlightVoucherSeatNumbersGroupByOutputType[P]>;
+}>>;
+export type flightVoucherSeatNumbersWhereInput = {
+    AND?: Prisma.flightVoucherSeatNumbersWhereInput | Prisma.flightVoucherSeatNumbersWhereInput[];
+    OR?: Prisma.flightVoucherSeatNumbersWhereInput[];
+    NOT?: Prisma.flightVoucherSeatNumbersWhereInput | Prisma.flightVoucherSeatNumbersWhereInput[];
+    id?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    flightId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    seatId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    flight?: Prisma.XOR<Prisma.FlightScalarRelationFilter, Prisma.flightWhereInput>;
+    seat?: Prisma.XOR<Prisma.SeatScalarRelationFilter, Prisma.seatWhereInput>;
+};
+export type flightVoucherSeatNumbersOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    flightId?: Prisma.SortOrder;
+    seatId?: Prisma.SortOrder;
+    flight?: Prisma.flightOrderByWithRelationInput;
+    seat?: Prisma.seatOrderByWithRelationInput;
+};
+export type flightVoucherSeatNumbersWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    AND?: Prisma.flightVoucherSeatNumbersWhereInput | Prisma.flightVoucherSeatNumbersWhereInput[];
+    OR?: Prisma.flightVoucherSeatNumbersWhereInput[];
+    NOT?: Prisma.flightVoucherSeatNumbersWhereInput | Prisma.flightVoucherSeatNumbersWhereInput[];
+    flightId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    seatId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    flight?: Prisma.XOR<Prisma.FlightScalarRelationFilter, Prisma.flightWhereInput>;
+    seat?: Prisma.XOR<Prisma.SeatScalarRelationFilter, Prisma.seatWhereInput>;
+}, "id">;
+export type flightVoucherSeatNumbersOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    flightId?: Prisma.SortOrder;
+    seatId?: Prisma.SortOrder;
+    _count?: Prisma.flightVoucherSeatNumbersCountOrderByAggregateInput;
+    _max?: Prisma.flightVoucherSeatNumbersMaxOrderByAggregateInput;
+    _min?: Prisma.flightVoucherSeatNumbersMinOrderByAggregateInput;
+};
+export type flightVoucherSeatNumbersScalarWhereWithAggregatesInput = {
+    AND?: Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput | Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput[];
+    OR?: Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput | Prisma.flightVoucherSeatNumbersScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"flightVoucherSeatNumbers"> | string;
+    flightId?: Prisma.StringWithAggregatesFilter<"flightVoucherSeatNumbers"> | string;
+    seatId?: Prisma.StringWithAggregatesFilter<"flightVoucherSeatNumbers"> | string;
+};
+export type flightVoucherSeatNumbersCreateInput = {
+    id?: string;
+    flight: Prisma.flightCreateNestedOneWithoutFlightVoucherSeatNumbersInput;
+    seat: Prisma.seatCreateNestedOneWithoutFlightVoucherSeatNumbersInput;
+};
+export type flightVoucherSeatNumbersUncheckedCreateInput = {
+    id?: string;
+    flightId: string;
+    seatId: string;
+};
+export type flightVoucherSeatNumbersUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flight?: Prisma.flightUpdateOneRequiredWithoutFlightVoucherSeatNumbersNestedInput;
+    seat?: Prisma.seatUpdateOneRequiredWithoutFlightVoucherSeatNumbersNestedInput;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flightId?: Prisma.StringFieldUpdateOperationsInput | string;
+    seatId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersCreateManyInput = {
+    id?: string;
+    flightId: string;
+    seatId: string;
+};
+export type flightVoucherSeatNumbersUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flightId?: Prisma.StringFieldUpdateOperationsInput | string;
+    seatId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type FlightVoucherSeatNumbersListRelationFilter = {
+    every?: Prisma.flightVoucherSeatNumbersWhereInput;
+    some?: Prisma.flightVoucherSeatNumbersWhereInput;
+    none?: Prisma.flightVoucherSeatNumbersWhereInput;
+};
+export type flightVoucherSeatNumbersOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type flightVoucherSeatNumbersCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    flightId?: Prisma.SortOrder;
+    seatId?: Prisma.SortOrder;
+};
+export type flightVoucherSeatNumbersMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    flightId?: Prisma.SortOrder;
+    seatId?: Prisma.SortOrder;
+};
+export type flightVoucherSeatNumbersMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    flightId?: Prisma.SortOrder;
+    seatId?: Prisma.SortOrder;
+};
+export type flightVoucherSeatNumbersCreateNestedManyWithoutFlightInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput> | Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManyFlightInputEnvelope;
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+};
+export type flightVoucherSeatNumbersUncheckedCreateNestedManyWithoutFlightInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput> | Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManyFlightInputEnvelope;
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+};
+export type flightVoucherSeatNumbersUpdateManyWithoutFlightNestedInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput> | Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput[];
+    upsert?: Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutFlightInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManyFlightInputEnvelope;
+    set?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    disconnect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    delete?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    update?: Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutFlightInput[];
+    updateMany?: Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutFlightInput[];
+    deleteMany?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+};
+export type flightVoucherSeatNumbersUncheckedUpdateManyWithoutFlightNestedInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput> | Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput[];
+    upsert?: Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutFlightInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManyFlightInputEnvelope;
+    set?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    disconnect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    delete?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    update?: Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutFlightInput[];
+    updateMany?: Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutFlightInput | Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutFlightInput[];
+    deleteMany?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+};
+export type flightVoucherSeatNumbersCreateNestedManyWithoutSeatInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput> | Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManySeatInputEnvelope;
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+};
+export type flightVoucherSeatNumbersUncheckedCreateNestedManyWithoutSeatInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput> | Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManySeatInputEnvelope;
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+};
+export type flightVoucherSeatNumbersUpdateManyWithoutSeatNestedInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput> | Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput[];
+    upsert?: Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutSeatInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManySeatInputEnvelope;
+    set?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    disconnect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    delete?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    update?: Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutSeatInput[];
+    updateMany?: Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutSeatInput[];
+    deleteMany?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+};
+export type flightVoucherSeatNumbersUncheckedUpdateManyWithoutSeatNestedInput = {
+    create?: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput> | Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput[] | Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput[];
+    connectOrCreate?: Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput | Prisma.flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput[];
+    upsert?: Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutSeatInput[];
+    createMany?: Prisma.flightVoucherSeatNumbersCreateManySeatInputEnvelope;
+    set?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    disconnect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    delete?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    connect?: Prisma.flightVoucherSeatNumbersWhereUniqueInput | Prisma.flightVoucherSeatNumbersWhereUniqueInput[];
+    update?: Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutSeatInput[];
+    updateMany?: Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutSeatInput | Prisma.flightVoucherSeatNumbersUpdateManyWithWhereWithoutSeatInput[];
+    deleteMany?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+};
+export type flightVoucherSeatNumbersCreateWithoutFlightInput = {
+    id?: string;
+    seat: Prisma.seatCreateNestedOneWithoutFlightVoucherSeatNumbersInput;
+};
+export type flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput = {
+    id?: string;
+    seatId: string;
+};
+export type flightVoucherSeatNumbersCreateOrConnectWithoutFlightInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    create: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput>;
+};
+export type flightVoucherSeatNumbersCreateManyFlightInputEnvelope = {
+    data: Prisma.flightVoucherSeatNumbersCreateManyFlightInput | Prisma.flightVoucherSeatNumbersCreateManyFlightInput[];
+};
+export type flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutFlightInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    update: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateWithoutFlightInput>;
+    create: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutFlightInput>;
+};
+export type flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutFlightInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateWithoutFlightInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateWithoutFlightInput>;
+};
+export type flightVoucherSeatNumbersUpdateManyWithWhereWithoutFlightInput = {
+    where: Prisma.flightVoucherSeatNumbersScalarWhereInput;
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateManyMutationInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateManyWithoutFlightInput>;
+};
+export type flightVoucherSeatNumbersScalarWhereInput = {
+    AND?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+    OR?: Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+    NOT?: Prisma.flightVoucherSeatNumbersScalarWhereInput | Prisma.flightVoucherSeatNumbersScalarWhereInput[];
+    id?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    flightId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+    seatId?: Prisma.StringFilter<"flightVoucherSeatNumbers"> | string;
+};
+export type flightVoucherSeatNumbersCreateWithoutSeatInput = {
+    id?: string;
+    flight: Prisma.flightCreateNestedOneWithoutFlightVoucherSeatNumbersInput;
+};
+export type flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput = {
+    id?: string;
+    flightId: string;
+};
+export type flightVoucherSeatNumbersCreateOrConnectWithoutSeatInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    create: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput>;
+};
+export type flightVoucherSeatNumbersCreateManySeatInputEnvelope = {
+    data: Prisma.flightVoucherSeatNumbersCreateManySeatInput | Prisma.flightVoucherSeatNumbersCreateManySeatInput[];
+};
+export type flightVoucherSeatNumbersUpsertWithWhereUniqueWithoutSeatInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    update: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateWithoutSeatInput>;
+    create: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedCreateWithoutSeatInput>;
+};
+export type flightVoucherSeatNumbersUpdateWithWhereUniqueWithoutSeatInput = {
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateWithoutSeatInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateWithoutSeatInput>;
+};
+export type flightVoucherSeatNumbersUpdateManyWithWhereWithoutSeatInput = {
+    where: Prisma.flightVoucherSeatNumbersScalarWhereInput;
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateManyMutationInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateManyWithoutSeatInput>;
+};
+export type flightVoucherSeatNumbersCreateManyFlightInput = {
+    id?: string;
+    seatId: string;
+};
+export type flightVoucherSeatNumbersUpdateWithoutFlightInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    seat?: Prisma.seatUpdateOneRequiredWithoutFlightVoucherSeatNumbersNestedInput;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateWithoutFlightInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    seatId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateManyWithoutFlightInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    seatId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersCreateManySeatInput = {
+    id?: string;
+    flightId: string;
+};
+export type flightVoucherSeatNumbersUpdateWithoutSeatInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flight?: Prisma.flightUpdateOneRequiredWithoutFlightVoucherSeatNumbersNestedInput;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateWithoutSeatInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flightId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersUncheckedUpdateManyWithoutSeatInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    flightId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type flightVoucherSeatNumbersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    flightId?: boolean;
+    seatId?: boolean;
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["flightVoucherSeatNumbers"]>;
+export type flightVoucherSeatNumbersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    flightId?: boolean;
+    seatId?: boolean;
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["flightVoucherSeatNumbers"]>;
+export type flightVoucherSeatNumbersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    flightId?: boolean;
+    seatId?: boolean;
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["flightVoucherSeatNumbers"]>;
+export type flightVoucherSeatNumbersSelectScalar = {
+    id?: boolean;
+    flightId?: boolean;
+    seatId?: boolean;
+};
+export type flightVoucherSeatNumbersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "flightId" | "seatId", ExtArgs["result"]["flightVoucherSeatNumbers"]>;
+export type flightVoucherSeatNumbersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+};
+export type flightVoucherSeatNumbersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+};
+export type flightVoucherSeatNumbersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    flight?: boolean | Prisma.flightDefaultArgs<ExtArgs>;
+    seat?: boolean | Prisma.seatDefaultArgs<ExtArgs>;
+};
+export type $flightVoucherSeatNumbersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "flightVoucherSeatNumbers";
+    objects: {
+        flight: Prisma.$flightPayload<ExtArgs>;
+        seat: Prisma.$seatPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        flightId: string;
+        seatId: string;
+    }, ExtArgs["result"]["flightVoucherSeatNumbers"]>;
+    composites: {};
+};
+export type flightVoucherSeatNumbersGetPayload<S extends boolean | null | undefined | flightVoucherSeatNumbersDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload, S>;
+export type flightVoucherSeatNumbersCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<flightVoucherSeatNumbersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: FlightVoucherSeatNumbersCountAggregateInputType | true;
+};
+export interface flightVoucherSeatNumbersDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['flightVoucherSeatNumbers'];
+        meta: {
+            name: 'flightVoucherSeatNumbers';
+        };
+    };
+    /**
+     * Find zero or one FlightVoucherSeatNumbers that matches the filter.
+     * @param {flightVoucherSeatNumbersFindUniqueArgs} args - Arguments to find a FlightVoucherSeatNumbers
+     * @example
+     * // Get one FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends flightVoucherSeatNumbersFindUniqueArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersFindUniqueArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one FlightVoucherSeatNumbers that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {flightVoucherSeatNumbersFindUniqueOrThrowArgs} args - Arguments to find a FlightVoucherSeatNumbers
+     * @example
+     * // Get one FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends flightVoucherSeatNumbersFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first FlightVoucherSeatNumbers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersFindFirstArgs} args - Arguments to find a FlightVoucherSeatNumbers
+     * @example
+     * // Get one FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends flightVoucherSeatNumbersFindFirstArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersFindFirstArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first FlightVoucherSeatNumbers that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersFindFirstOrThrowArgs} args - Arguments to find a FlightVoucherSeatNumbers
+     * @example
+     * // Get one FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends flightVoucherSeatNumbersFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more FlightVoucherSeatNumbers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findMany()
+     *
+     * // Get first 10 FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const flightVoucherSeatNumbersWithIdOnly = await prisma.flightVoucherSeatNumbers.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends flightVoucherSeatNumbersFindManyArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersCreateArgs} args - Arguments to create a FlightVoucherSeatNumbers.
+     * @example
+     * // Create one FlightVoucherSeatNumbers
+     * const FlightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.create({
+     *   data: {
+     *     // ... data to create a FlightVoucherSeatNumbers
+     *   }
+     * })
+     *
+     */
+    create<T extends flightVoucherSeatNumbersCreateArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersCreateArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersCreateManyArgs} args - Arguments to create many FlightVoucherSeatNumbers.
+     * @example
+     * // Create many FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends flightVoucherSeatNumbersCreateManyArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many FlightVoucherSeatNumbers and returns the data saved in the database.
+     * @param {flightVoucherSeatNumbersCreateManyAndReturnArgs} args - Arguments to create many FlightVoucherSeatNumbers.
+     * @example
+     * // Create many FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many FlightVoucherSeatNumbers and only return the `id`
+     * const flightVoucherSeatNumbersWithIdOnly = await prisma.flightVoucherSeatNumbers.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends flightVoucherSeatNumbersCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersDeleteArgs} args - Arguments to delete one FlightVoucherSeatNumbers.
+     * @example
+     * // Delete one FlightVoucherSeatNumbers
+     * const FlightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.delete({
+     *   where: {
+     *     // ... filter to delete one FlightVoucherSeatNumbers
+     *   }
+     * })
+     *
+     */
+    delete<T extends flightVoucherSeatNumbersDeleteArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersDeleteArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersUpdateArgs} args - Arguments to update one FlightVoucherSeatNumbers.
+     * @example
+     * // Update one FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends flightVoucherSeatNumbersUpdateArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersUpdateArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersDeleteManyArgs} args - Arguments to filter FlightVoucherSeatNumbers to delete.
+     * @example
+     * // Delete a few FlightVoucherSeatNumbers
+     * const { count } = await prisma.flightVoucherSeatNumbers.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends flightVoucherSeatNumbersDeleteManyArgs>(args?: Prisma.SelectSubset<T, flightVoucherSeatNumbersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more FlightVoucherSeatNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends flightVoucherSeatNumbersUpdateManyArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more FlightVoucherSeatNumbers and returns the data updated in the database.
+     * @param {flightVoucherSeatNumbersUpdateManyAndReturnArgs} args - Arguments to update many FlightVoucherSeatNumbers.
+     * @example
+     * // Update many FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more FlightVoucherSeatNumbers and only return the `id`
+     * const flightVoucherSeatNumbersWithIdOnly = await prisma.flightVoucherSeatNumbers.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends flightVoucherSeatNumbersUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one FlightVoucherSeatNumbers.
+     * @param {flightVoucherSeatNumbersUpsertArgs} args - Arguments to update or create a FlightVoucherSeatNumbers.
+     * @example
+     * // Update or create a FlightVoucherSeatNumbers
+     * const flightVoucherSeatNumbers = await prisma.flightVoucherSeatNumbers.upsert({
+     *   create: {
+     *     // ... data to create a FlightVoucherSeatNumbers
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FlightVoucherSeatNumbers we want to update
+     *   }
+     * })
+     */
+    upsert<T extends flightVoucherSeatNumbersUpsertArgs>(args: Prisma.SelectSubset<T, flightVoucherSeatNumbersUpsertArgs<ExtArgs>>): Prisma.Prisma__flightVoucherSeatNumbersClient<runtime.Types.Result.GetResult<Prisma.$flightVoucherSeatNumbersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of FlightVoucherSeatNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersCountArgs} args - Arguments to filter FlightVoucherSeatNumbers to count.
+     * @example
+     * // Count the number of FlightVoucherSeatNumbers
+     * const count = await prisma.flightVoucherSeatNumbers.count({
+     *   where: {
+     *     // ... the filter for the FlightVoucherSeatNumbers we want to count
+     *   }
+     * })
+    **/
+    count<T extends flightVoucherSeatNumbersCountArgs>(args?: Prisma.Subset<T, flightVoucherSeatNumbersCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], FlightVoucherSeatNumbersCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a FlightVoucherSeatNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FlightVoucherSeatNumbersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FlightVoucherSeatNumbersAggregateArgs>(args: Prisma.Subset<T, FlightVoucherSeatNumbersAggregateArgs>): Prisma.PrismaPromise<GetFlightVoucherSeatNumbersAggregateType<T>>;
+    /**
+     * Group by FlightVoucherSeatNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {flightVoucherSeatNumbersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends flightVoucherSeatNumbersGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: flightVoucherSeatNumbersGroupByArgs['orderBy'];
+    } : {
+        orderBy?: flightVoucherSeatNumbersGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, flightVoucherSeatNumbersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFlightVoucherSeatNumbersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the flightVoucherSeatNumbers model
+     */
+    readonly fields: flightVoucherSeatNumbersFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for flightVoucherSeatNumbers.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__flightVoucherSeatNumbersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    flight<T extends Prisma.flightDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.flightDefaultArgs<ExtArgs>>): Prisma.Prisma__flightClient<runtime.Types.Result.GetResult<Prisma.$flightPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    seat<T extends Prisma.seatDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.seatDefaultArgs<ExtArgs>>): Prisma.Prisma__seatClient<runtime.Types.Result.GetResult<Prisma.$seatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the flightVoucherSeatNumbers model
+ */
+export interface flightVoucherSeatNumbersFieldRefs {
+    readonly id: Prisma.FieldRef<"flightVoucherSeatNumbers", 'String'>;
+    readonly flightId: Prisma.FieldRef<"flightVoucherSeatNumbers", 'String'>;
+    readonly seatId: Prisma.FieldRef<"flightVoucherSeatNumbers", 'String'>;
+}
+/**
+ * flightVoucherSeatNumbers findUnique
+ */
+export type flightVoucherSeatNumbersFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter, which flightVoucherSeatNumbers to fetch.
+     */
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+};
+/**
+ * flightVoucherSeatNumbers findUniqueOrThrow
+ */
+export type flightVoucherSeatNumbersFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter, which flightVoucherSeatNumbers to fetch.
+     */
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+};
+/**
+ * flightVoucherSeatNumbers findFirst
+ */
+export type flightVoucherSeatNumbersFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter, which flightVoucherSeatNumbers to fetch.
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of flightVoucherSeatNumbers to fetch.
+     */
+    orderBy?: Prisma.flightVoucherSeatNumbersOrderByWithRelationInput | Prisma.flightVoucherSeatNumbersOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for flightVoucherSeatNumbers.
+     */
+    cursor?: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` flightVoucherSeatNumbers from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` flightVoucherSeatNumbers.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of flightVoucherSeatNumbers.
+     */
+    distinct?: Prisma.FlightVoucherSeatNumbersScalarFieldEnum | Prisma.FlightVoucherSeatNumbersScalarFieldEnum[];
+};
+/**
+ * flightVoucherSeatNumbers findFirstOrThrow
+ */
+export type flightVoucherSeatNumbersFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter, which flightVoucherSeatNumbers to fetch.
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of flightVoucherSeatNumbers to fetch.
+     */
+    orderBy?: Prisma.flightVoucherSeatNumbersOrderByWithRelationInput | Prisma.flightVoucherSeatNumbersOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for flightVoucherSeatNumbers.
+     */
+    cursor?: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` flightVoucherSeatNumbers from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` flightVoucherSeatNumbers.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of flightVoucherSeatNumbers.
+     */
+    distinct?: Prisma.FlightVoucherSeatNumbersScalarFieldEnum | Prisma.FlightVoucherSeatNumbersScalarFieldEnum[];
+};
+/**
+ * flightVoucherSeatNumbers findMany
+ */
+export type flightVoucherSeatNumbersFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter, which flightVoucherSeatNumbers to fetch.
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of flightVoucherSeatNumbers to fetch.
+     */
+    orderBy?: Prisma.flightVoucherSeatNumbersOrderByWithRelationInput | Prisma.flightVoucherSeatNumbersOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing flightVoucherSeatNumbers.
+     */
+    cursor?: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` flightVoucherSeatNumbers from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` flightVoucherSeatNumbers.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of flightVoucherSeatNumbers.
+     */
+    distinct?: Prisma.FlightVoucherSeatNumbersScalarFieldEnum | Prisma.FlightVoucherSeatNumbersScalarFieldEnum[];
+};
+/**
+ * flightVoucherSeatNumbers create
+ */
+export type flightVoucherSeatNumbersCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a flightVoucherSeatNumbers.
+     */
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateInput, Prisma.flightVoucherSeatNumbersUncheckedCreateInput>;
+};
+/**
+ * flightVoucherSeatNumbers createMany
+ */
+export type flightVoucherSeatNumbersCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many flightVoucherSeatNumbers.
+     */
+    data: Prisma.flightVoucherSeatNumbersCreateManyInput | Prisma.flightVoucherSeatNumbersCreateManyInput[];
+};
+/**
+ * flightVoucherSeatNumbers createManyAndReturn
+ */
+export type flightVoucherSeatNumbersCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * The data used to create many flightVoucherSeatNumbers.
+     */
+    data: Prisma.flightVoucherSeatNumbersCreateManyInput | Prisma.flightVoucherSeatNumbersCreateManyInput[];
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * flightVoucherSeatNumbers update
+ */
+export type flightVoucherSeatNumbersUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a flightVoucherSeatNumbers.
+     */
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateInput>;
+    /**
+     * Choose, which flightVoucherSeatNumbers to update.
+     */
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+};
+/**
+ * flightVoucherSeatNumbers updateMany
+ */
+export type flightVoucherSeatNumbersUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update flightVoucherSeatNumbers.
+     */
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateManyMutationInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateManyInput>;
+    /**
+     * Filter which flightVoucherSeatNumbers to update
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * Limit how many flightVoucherSeatNumbers to update.
+     */
+    limit?: number;
+};
+/**
+ * flightVoucherSeatNumbers updateManyAndReturn
+ */
+export type flightVoucherSeatNumbersUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * The data used to update flightVoucherSeatNumbers.
+     */
+    data: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateManyMutationInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateManyInput>;
+    /**
+     * Filter which flightVoucherSeatNumbers to update
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * Limit how many flightVoucherSeatNumbers to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * flightVoucherSeatNumbers upsert
+ */
+export type flightVoucherSeatNumbersUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the flightVoucherSeatNumbers to update in case it exists.
+     */
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+    /**
+     * In case the flightVoucherSeatNumbers found by the `where` argument doesn't exist, create a new flightVoucherSeatNumbers with this data.
+     */
+    create: Prisma.XOR<Prisma.flightVoucherSeatNumbersCreateInput, Prisma.flightVoucherSeatNumbersUncheckedCreateInput>;
+    /**
+     * In case the flightVoucherSeatNumbers was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.flightVoucherSeatNumbersUpdateInput, Prisma.flightVoucherSeatNumbersUncheckedUpdateInput>;
+};
+/**
+ * flightVoucherSeatNumbers delete
+ */
+export type flightVoucherSeatNumbersDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+    /**
+     * Filter which flightVoucherSeatNumbers to delete.
+     */
+    where: Prisma.flightVoucherSeatNumbersWhereUniqueInput;
+};
+/**
+ * flightVoucherSeatNumbers deleteMany
+ */
+export type flightVoucherSeatNumbersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which flightVoucherSeatNumbers to delete
+     */
+    where?: Prisma.flightVoucherSeatNumbersWhereInput;
+    /**
+     * Limit how many flightVoucherSeatNumbers to delete.
+     */
+    limit?: number;
+};
+/**
+ * flightVoucherSeatNumbers without action
+ */
+export type flightVoucherSeatNumbersDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the flightVoucherSeatNumbers
+     */
+    select?: Prisma.flightVoucherSeatNumbersSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the flightVoucherSeatNumbers
+     */
+    omit?: Prisma.flightVoucherSeatNumbersOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.flightVoucherSeatNumbersInclude<ExtArgs> | null;
+};
+export {};

@@ -12,8 +12,61 @@ datasource db {
   provider = "sqlite"
 }
 
-model User {
-  id    String @id @default(cuid())
-  email String @unique
-  name  String?
+model crew {
+  id       String  @id @default(cuid())
+  email    String  @unique
+  name     String?
+  password String
+
+  flights flight[]
+}
+
+model aircraftType {
+  id         String @id @default(cuid())
+  name       String
+  seats      seat[]
+  seatType   String
+  seatNumber Int
+
+  flightAircraftType flightAircraftType[]
+}
+
+model flight {
+  id           String   @id @default(cuid())
+  flightNumber String
+  departure    String
+  arrival      String
+  date         DateTime
+  crewId       String
+  crew         crew     @relation(fields: [crewId], references: [id])
+
+  flightVoucherSeatNumbers flightVoucherSeatNumbers[]
+  flightAircraftType       flightAircraftType[]
+}
+
+model flightVoucherSeatNumbers {
+  id       String @id @default(cuid())
+  flightId String
+  flight   flight @relation(fields: [flightId], references: [id])
+  seatId   String
+  seat     seat   @relation(fields: [seatId], references: [id])
+}
+
+model flightAircraftType {
+  id             String @id @default(cuid())
+  flightId       String
+  flight         flight @relation(fields: [flightId], references: [id])
+  aircraftTypeId String
+  aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id])
+}
+
+model seat {
+  id             String       @id @default(cuid())
+  seatNumber     String
+  class          String
+  isAvailable    Boolean
+  aircraftTypeId String
+  aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id])
+
+  flightVoucherSeatNumbers flightVoucherSeatNumbers[]
 }

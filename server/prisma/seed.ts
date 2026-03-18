@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "dotenv/config";
+import { createHash } from 'crypto';
 
 import { PrismaClient } from '../../generated/prisma/client';
 import { PrismaLibSql } from "@prisma/adapter-libsql";
@@ -10,15 +11,17 @@ const prisma = new PrismaClient({ adapter });
 
 
 async function main() {
-  // Create multiple users
-  await prisma.user.createMany({
+  const hashedPassword = createHash('sha256').update('password').digest('hex');
+
+  // Create multiple crews
+  await prisma.crew.createMany({
     data: [
-      { email: "alice@example.com", name: "Alice" },
-      { email: "bob@example.com", name: "Bob" },
-      { email: "charlie@example.com", name: "Charlie" },
-      { email: "diana@example.com", name: "Diana" },
-      { email: "eve@example.com", name: "Eve" },
-      { email: "frank@example.com", name: "Frank" },
+      { email: "alice@example.com", name: "Alice", password: hashedPassword },
+      { email: "bob@example.com", name: "Bob", password: hashedPassword },
+      { email: "charlie@example.com", name: "Charlie", password: hashedPassword },
+      { email: "diana@example.com", name: "Diana", password: hashedPassword },
+      { email: "eve@example.com", name: "Eve", password: hashedPassword },
+      { email: "frank@example.com", name: "Frank", password: hashedPassword },
     ],
   });
   console.log("Seed data inserted!");
