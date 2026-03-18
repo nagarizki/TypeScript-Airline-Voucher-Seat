@@ -40,3 +40,7 @@ pnpm-debug.log*
 # Bun
 bun.lockb
 .turbo
+
+# Prisma SQLite
+*.db
+*.db-journal
