@@ -18,10 +18,13 @@
     "dev": "bun --watch run src/index.ts & tsc --watch"
   },
   "dependencies": {
+    "@prisma/adapter-libsql": "^7.5.0",
+    "@prisma/client": "^7.5.0",
     "hono": "^4.10.8",
     "shared": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prisma": "^7.5.0"
   }
 }
