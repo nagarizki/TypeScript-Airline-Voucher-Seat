@@ -13,7 +13,8 @@
     "paths": {
       "@server/*": ["./server/src/*"],
       "@client/*": ["./client/src/*"],
-      "@shared/*": ["./shared/src/*"]
+      "@shared/*": ["./shared/src/*"],
+      "@prisma/client": ["./generated/prisma/client"]
     },
 
     // Module resolution

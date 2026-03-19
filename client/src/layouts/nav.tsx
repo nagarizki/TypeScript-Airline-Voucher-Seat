@@ -35,6 +35,11 @@ export default function Nav() {
               </Link>
             </li>
             <li>
+              <Link to="/voucher-generator" className="block p-2 hover:bg-gray-200">
+                Voucher Generator
+              </Link>
+            </li>
+            <li>
               <button
                 onClick={handleLogout}
                 className="block w-full text-left p-2 hover:bg-gray-200"

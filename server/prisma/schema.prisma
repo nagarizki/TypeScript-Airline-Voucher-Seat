@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../../generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -29,6 +29,8 @@ model aircraftType {
   seatNumber Int
 
   flightAircraftType flightAircraftType[]
+
+  @@map("aircraft_type")
 }
 
 model flight {
@@ -50,6 +52,8 @@ model flightVoucherSeatNumbers {
   flight   flight @relation(fields: [flightId], references: [id])
   seatId   String
   seat     seat   @relation(fields: [seatId], references: [id])
+
+  @@map("flight_voucher_seat_numbers")
 }
 
 model flightAircraftType {
@@ -58,6 +62,8 @@ model flightAircraftType {
   flight         flight @relation(fields: [flightId], references: [id])
   aircraftTypeId String
   aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id])
+
+  @@map("flight_aircraft_type")
 }
 
 model seat {
@@ -69,4 +75,17 @@ model seat {
   aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id])
 
   flightVoucherSeatNumbers flightVoucherSeatNumbers[]
+}
+
+model voucher {
+  id           Int      @id @default(autoincrement())
+  crew_name    String
+  crew_id      String
+  flight_number String
+  flight_date  String
+  aircraft_type String
+  seat1        String
+  seat2        String
+  seat3        String
+  created_at   DateTime @default(now())
 }

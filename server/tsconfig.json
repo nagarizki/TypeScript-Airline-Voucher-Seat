@@ -15,13 +15,14 @@
     "composite": true,
     "declaration": true,
     "outDir": "dist",
+    "rootDir": "../..",
     "noEmit": false,
     "emitDecoratorMetadata": true,
 
     // Module resolution
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": false
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../shared/src/**/*", "generated/**/*"],
   "exclude": ["node_modules", "dist"]
 }

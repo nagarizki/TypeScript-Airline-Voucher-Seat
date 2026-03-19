@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VoucherGeneratorRouteImport } from './routes/voucher-generator'
 import { Route as SeatAssignmentRouteImport } from './routes/seat-assignment'
 import { Route as AvailableFlightRouteImport } from './routes/available-flight'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VoucherGeneratorRoute = VoucherGeneratorRouteImport.update({
+  id: '/voucher-generator',
+  path: '/voucher-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SeatAssignmentRoute = SeatAssignmentRouteImport.update({
   id: '/seat-assignment',
   path: '/seat-assignment',
@@ -33,34 +39,54 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/available-flight': typeof AvailableFlightRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/available-flight' | '/seat-assignment'
+  fullPaths:
+    | '/'
+    | '/available-flight'
+    | '/seat-assignment'
+    | '/voucher-generator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/available-flight' | '/seat-assignment'
-  id: '__root__' | '/' | '/available-flight' | '/seat-assignment'
+  to: '/' | '/available-flight' | '/seat-assignment' | '/voucher-generator'
+  id:
+    | '__root__'
+    | '/'
+    | '/available-flight'
+    | '/seat-assignment'
+    | '/voucher-generator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvailableFlightRoute: typeof AvailableFlightRoute
   SeatAssignmentRoute: typeof SeatAssignmentRoute
+  VoucherGeneratorRoute: typeof VoucherGeneratorRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/voucher-generator': {
+      id: '/voucher-generator'
+      path: '/voucher-generator'
+      fullPath: '/voucher-generator'
+      preLoaderRoute: typeof VoucherGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/seat-assignment': {
       id: '/seat-assignment'
       path: '/seat-assignment'
@@ -89,6 +115,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvailableFlightRoute: AvailableFlightRoute,
   SeatAssignmentRoute: SeatAssignmentRoute,
+  VoucherGeneratorRoute: VoucherGeneratorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

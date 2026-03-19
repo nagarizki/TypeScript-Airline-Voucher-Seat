@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models"
-import { type PrismaClient } from "./class"
+import type * as Prisma from "../models.js"
+import { type PrismaClient } from "./class.js"
 
-export type * from '../models'
+export type * from '../models.js'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -389,7 +389,8 @@ export const ModelName = {
   flight: 'flight',
   flightVoucherSeatNumbers: 'flightVoucherSeatNumbers',
   flightAircraftType: 'flightAircraftType',
-  seat: 'seat'
+  seat: 'seat',
+  Voucher: 'Voucher'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "crew" | "aircraftType" | "flight" | "flightVoucherSeatNumbers" | "flightAircraftType" | "seat"
+    modelProps: "crew" | "aircraftType" | "flight" | "flightVoucherSeatNumbers" | "flightAircraftType" | "seat" | "voucher"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -853,6 +854,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Voucher: {
+      payload: Prisma.$VoucherPayload<ExtArgs>
+      fields: Prisma.VoucherFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VoucherFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VoucherFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        findFirst: {
+          args: Prisma.VoucherFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VoucherFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        findMany: {
+          args: Prisma.VoucherFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+        }
+        create: {
+          args: Prisma.VoucherCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        createMany: {
+          args: Prisma.VoucherCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VoucherCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+        }
+        delete: {
+          args: Prisma.VoucherDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        update: {
+          args: Prisma.VoucherUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        deleteMany: {
+          args: Prisma.VoucherDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VoucherUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VoucherUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+        }
+        upsert: {
+          args: Prisma.VoucherUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherPayload>
+        }
+        aggregate: {
+          args: Prisma.VoucherAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVoucher>
+        }
+        groupBy: {
+          args: Prisma.VoucherGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoucherGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VoucherCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoucherCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -948,6 +1023,22 @@ export const SeatScalarFieldEnum = {
 } as const
 
 export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof SeatScalarFieldEnum]
+
+
+export const VoucherScalarFieldEnum = {
+  id: 'id',
+  crew_name: 'crew_name',
+  crew_id: 'crew_id',
+  flight_number: 'flight_number',
+  flight_date: 'flight_date',
+  aircraft_type: 'aircraft_type',
+  seat1: 'seat1',
+  seat2: 'seat2',
+  seat3: 'seat3',
+  created_at: 'created_at'
+} as const
+
+export type VoucherScalarFieldEnum = (typeof VoucherScalarFieldEnum)[keyof typeof VoucherScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1107,6 +1198,7 @@ export type GlobalOmitConfig = {
   flightVoucherSeatNumbers?: Prisma.flightVoucherSeatNumbersOmit
   flightAircraftType?: Prisma.flightAircraftTypeOmit
   seat?: Prisma.seatOmit
+  voucher?: Prisma.VoucherOmit
 }
 
 /* Types for Logging */
