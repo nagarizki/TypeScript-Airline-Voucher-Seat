@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Link } from '@tanstack/react-router';
+
+interface Crew {
+  id: number;
+  email: string;
+  name: string;
+}
 
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -13,9 +20,16 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [crew, setCrew] = useState<Crew | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Check if crew is already logged in
+    const storedCrew = localStorage.getItem('crew');
+    if (storedCrew) {
+      setCrew(JSON.parse(storedCrew));
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +50,8 @@ export default function LoginPage() {
 
       if (data.success) {
         localStorage.setItem('crew', JSON.stringify(data.crew));
-        window.location.href = '/available-flight'; // or use router
+        setCrew(data.crew);
+        window.location.href = '/available-flight';
       } else {
         setError(data.message);
       }
@@ -47,8 +62,65 @@ export default function LoginPage() {
     }
   };
 
+  // If crew is logged in, show the home page with greeting and promotional content
+  if (crew) {
+    return (
+      <>
+        {/* Hero Text with Greeting */}
+        <div id="Hero-Text" className="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto gap-[30px] mt-16">
+          <h1 className="font-extrabold text-[50px] leading-[75px]">
+            Hello, {crew.name}! <br />Explore Magical <br />Wonderful Worlds
+          </h1>
+          <p className="text-lg leading-8">
+            Your truly great experience starts here with us <br />that lorem dolor amet si package exclusively matter.
+          </p>
+        </div>
+
+        {/* Quick Actions - Available when logged in */}
+        <div className="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto mt-16 pb-16">
+          <div className="flex flex-col rounded-[30px] p-[30px] gap-4 bg-white">
+            <h2 className="font-bold text-xl leading-[30px]">Quick Actions</h2>
+            <div className="flex items-center gap-5">
+              <Link
+                to="/available-flight"
+                className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
+              >
+                <img src="assets/images/icons/departure.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <div className="text-left">
+                  <p className="font-semibold text-lg">Available Flights</p>
+                  <p className="text-sm text-garuda-grey">View and manage flights</p>
+                </div>
+              </Link>
+              <Link
+                to="/seat-assignment"
+                className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
+              >
+                <img src="assets/images/icons/seat.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <div className="text-left">
+                  <p className="font-semibold text-lg">Seat Assignment</p>
+                  <p className="text-sm text-garuda-grey">Assign seats to passengers</p>
+                </div>
+              </Link>
+              <Link
+                to="/voucher-generator"
+                className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
+              >
+                <img src="assets/images/icons/note-add-black.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <div className="text-left">
+                  <p className="font-semibold text-lg">Voucher Generator</p>
+                  <p className="text-sm text-garuda-grey">Generate flight vouchers</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // If not logged in, show login form
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="relative flex items-center justify-center min-h-screen">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center">Crew Login</h1>
         <form onSubmit={handleSubmit}>

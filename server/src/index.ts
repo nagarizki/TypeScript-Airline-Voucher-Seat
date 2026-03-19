@@ -109,7 +109,118 @@ export const app = new Hono()
   }
 
   return c.json({ success: true, seats: createdSeats });
-});
+})
+
+.get("/api/flights", async (c) => {
+  const flights = await prisma.flight.findMany({
+    include: {
+      crew: {
+        select: {
+          name: true,
+          email: true,
+        },
+      },
+      flightAircraftType: {
+        include: {
+          aircraftType: true,
+        },
+      },
+    },
+    orderBy: {
+      date: 'asc',
+    },
+  });
+
+  return c.json({ success: true, flights });
+})
+
+.get("/api/flights/:flightNumber/:date", async (c) => {
+  const { flightNumber, date } = c.req.param();
+  
+  const flight = await prisma.flight.findFirst({
+    where: {
+      flightNumber,
+      date: new Date(date),
+    },
+    include: {
+      crew: {
+        select: {
+          name: true,
+          email: true,
+        },
+      },
+      flightAircraftType: {
+        include: {
+          aircraftType: {
+            include: {
+              seats: true,
+            },
+          },
+        },
+      },
+      flightVoucherSeatNumbers: true,
+    },
+  });
+
+  if (!flight) {
+    return c.json({ success: false, message: "Flight not found" }, { status: 404 });
+  }
+
+  // Get assigned seat IDs
+  const assignedSeatIds = flight.flightVoucherSeatNumbers.map(v => v.seatId);
+
+  // Mark seats as available/taken
+  const seats = flight.flightAircraftType[0]?.aircraftType.seats.map(seat => ({
+    id: seat.id,
+    seatNumber: seat.seatNumber,
+    class: seat.class,
+    isAvailable: !assignedSeatIds.includes(seat.id),
+  })) || [];
+
+  return c.json({
+    success: true,
+    flight: {
+      id: flight.id,
+      flightNumber: flight.flightNumber,
+      departure: flight.departure,
+      arrival: flight.arrival,
+      date: flight.date.toISOString(),
+      aircraftType: flight.flightAircraftType[0]?.aircraftType.name,
+      seatType: flight.flightAircraftType[0]?.aircraftType.seatType,
+      seats,
+    },
+  });
+})
+
+.post("/api/seats/assign", async (c) => {
+  const { flightId, seatId } = await c.req.json();
+
+  // Check if seat is already assigned
+  const existing = await prisma.flightVoucherSeatNumbers.findFirst({
+    where: {
+      flightId,
+      seatId,
+    },
+  });
+
+  if (existing) {
+    // Unassign (remove) the seat
+    await prisma.flightVoucherSeatNumbers.delete({
+      where: { id: existing.id },
+    });
+    return c.json({ success: true, assigned: false });
+  }
+
+  // Assign the seat
+  await prisma.flightVoucherSeatNumbers.create({
+    data: {
+      flightId,
+      seatId,
+    },
+  });
+
+  return c.json({ success: true, assigned: true });
+})
 
 export default app;
 

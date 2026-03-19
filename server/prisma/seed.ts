@@ -32,9 +32,9 @@ async function main() {
   // Create aircraft types
   const aircraftTypes = [];
   for (const data of [
-    { name: "ATR", seatType: "economy", seatNumber: 70 },
-    { name: "Airbus 320", seatType: "economy", seatNumber: 150 },
-    { name: "Boeing 737 Max", seatType: "economy", seatNumber: 160 },
+    { name: "ATR", seatType: "2-2", seatNumber: 72 },
+    { name: "Airbus 320", seatType: "3-3", seatNumber: 192 },
+    { name: "Boeing 737 Max", seatType: "3-3", seatNumber: 192 },
   ]) {
     const at = await prisma.aircraftType.create({ data });
     aircraftTypes.push(at);
@@ -43,13 +43,35 @@ async function main() {
   // Create seats for each aircraft type
   for (const aircraft of aircraftTypes) {
     const seats = [];
-    for (let i = 1; i <= aircraft.seatNumber; i++) {
-      seats.push({
-        seatNumber: `${Math.floor((i-1)/6) + 1}${String.fromCharCode(65 + ((i-1) % 6))}`, // e.g. 1A, 1B, ..., 12A for ATR
-        class: aircraft.seatType,
-        isAvailable: true,
-        aircraftTypeId: aircraft.id,
-      });
+    const isATR = aircraft.name === "ATR";
+    const seatsPerRow = isATR ? 4 : 6;
+    const totalRows = Math.ceil(aircraft.seatNumber / seatsPerRow);
+    
+    for (let row = 1; row <= totalRows; row++) {
+      if (isATR) {
+        // ATR: A, C, D, F (4 seats per row, skipping B and E for aisle)
+        for (const col of ['A', 'C', 'D', 'F']) {
+          const seatNumber = `${row}${col}`;
+          seats.push({
+            seatNumber,
+            class: aircraft.seatType,
+            isAvailable: true,
+            aircraftTypeId: aircraft.id,
+          });
+        }
+      } else {
+        // Airbus 320 / Boeing 737 Max: A-F (6 seats per row)
+        for (let col = 0; col < 6; col++) {
+          const seatLetter = String.fromCharCode(65 + col); // A, B, C, D, E, F
+          const seatNumber = `${row}${seatLetter}`;
+          seats.push({
+            seatNumber,
+            class: aircraft.seatType,
+            isAvailable: true,
+            aircraftTypeId: aircraft.id,
+          });
+        }
+      }
     }
     await prisma.seat.createMany({ data: seats });
   }

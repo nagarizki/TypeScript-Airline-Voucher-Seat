@@ -116,5 +116,14 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
   }
+}
+
+/* Custom colors from UI template */
+@theme inline {
+  --color-garuda-black: #1E293B;
+  --color-garuda-blue: #0068FF;
+  --color-garuda-bg-grey: #F5F6FB;
+  --color-garuda-grey: #8A9CB8;
 }
