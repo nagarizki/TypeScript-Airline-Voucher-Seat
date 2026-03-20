@@ -7,16 +7,19 @@ interface Flight {
   departure: string;
   arrival: string;
   date: string;
-  crew: {
-    name: string | null;
-    email: string | null;
-  };
+  flightCrew: Array<{
+    crew: {
+      name: string | null;
+      email: string | null;
+    };
+  }>;
   flightAircraftType: Array<{
     aircraftType: {
       name: string;
       seatNumber: number;
     };
   }>;
+  hasVouchers?: boolean;
 }
 
 export default function AvailableFlightPage() {
@@ -85,8 +88,8 @@ export default function AvailableFlightPage() {
 
       {/* Main Content */}
       <main className="relative max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">Available Flights</h1>
-        <p className="text-lg text-gray-600 mb-8">View and manage all available flights</p>
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">Flights</h1>
+        <p className="text-lg text-gray-600 mb-8">View and manage flights</p>
 
         {loading && (
           <div className="flex items-center justify-center py-20">
@@ -138,14 +141,20 @@ export default function AvailableFlightPage() {
                       <span className="font-semibold">{flight.arrival}</span>
                     </div>
                     <p className="text-sm text-gray-500 mt-1">
-                      Crew: {flight.crew.name || 'Unassigned'}
+                      Crew: {flight.flightCrew?.[0]?.crew?.name || 'Unassigned'}
                     </p>
                   </div>
                   
                   <div className="flex flex-col items-end gap-2">
-                    <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                      Available
-                    </span>
+                    {flight.hasVouchers ? (
+                      <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">
+                        Vouchers Created
+                      </span>
+                    ) : (
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                        Vouchers Available
+                      </span>
+                    )}
                     <Link
                       to="/seat-assignment"
                       search={{ flight: flight.flightNumber, date: flight.date }}

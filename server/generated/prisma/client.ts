@@ -57,6 +57,11 @@ export type aircraftType = Prisma.aircraftTypeModel
  */
 export type flight = Prisma.flightModel
 /**
+ * Model flightCrew
+ * 
+ */
+export type flightCrew = Prisma.flightCrewModel
+/**
  * Model flightVoucherSeatNumbers
  * 
  */
@@ -72,7 +77,7 @@ export type flightAircraftType = Prisma.flightAircraftTypeModel
  */
 export type seat = Prisma.seatModel
 /**
- * Model Voucher
+ * Model voucher
  * 
  */
-export type Voucher = Prisma.VoucherModel
+export type voucher = Prisma.voucherModel

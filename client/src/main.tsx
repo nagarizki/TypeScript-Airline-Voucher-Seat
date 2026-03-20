@@ -8,9 +8,14 @@ const queryClient = new QueryClient();
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
+// Import the not-found route
+import { NotFoundRoute } from "./routes/not-found";
 
-// Create a new router instance
-const router = createRouter({ routeTree });
+// Create a new router instance with not-found route
+const router = createRouter({ 
+  routeTree,
+  notFoundRoute: NotFoundRoute,
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

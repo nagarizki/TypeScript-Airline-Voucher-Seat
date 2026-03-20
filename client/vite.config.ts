@@ -6,7 +6,6 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
 	plugins: [
-		// Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
 		tanstackRouter({
 			target: "react",
 			autoCodeSplitting: true,
@@ -20,13 +19,19 @@ export default defineConfig({
 		},
 	},
 	server: {
+		port: 5173,
+		host: true,
 		proxy: {
-			'/login': {
-				target: 'http://localhost:3000',
+			"/api": {
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
-			'/api': {
-				target: 'http://localhost:3000',
+			"/login": {
+				target: "http://localhost:3000",
+				changeOrigin: true,
+			},
+			"/hello": {
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
 		},

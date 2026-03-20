@@ -82,12 +82,12 @@ export default function LoginPage() {
             <h2 className="font-bold text-xl leading-[30px]">Quick Actions</h2>
             <div className="flex items-center gap-5">
               <Link
-                to="/available-flight"
+                to="/flights"
                 className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
               >
                 <img src="assets/images/icons/departure.svg" className="w-[50px] flex shrink-0" alt="icon" />
                 <div className="text-left">
-                  <p className="font-semibold text-lg">Available Flights</p>
+                  <p className="font-semibold text-lg">Flights</p>
                   <p className="text-sm text-garuda-grey">View and manage flights</p>
                 </div>
               </Link>
@@ -105,7 +105,9 @@ export default function LoginPage() {
                 to="/voucher-generator"
                 className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
               >
-                <img src="assets/images/icons/note-add-black.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <div className="w-[50px] h-[50px] rounded-full bg-[#FFA44B] flex items-center justify-center flex shrink-0">
+                  <img src="assets/images/icons/note-add-white.svg" className="w-6 h-6" alt="icon" />
+                </div>
                 <div className="text-left">
                   <p className="font-semibold text-lg">Voucher Generator</p>
                   <p className="text-sm text-garuda-grey">Generate flight vouchers</p>

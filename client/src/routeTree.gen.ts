@@ -10,8 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoucherGeneratorRouteImport } from './routes/voucher-generator'
+import { Route as UserGuideRouteImport } from './routes/user-guide'
 import { Route as SeatAssignmentRouteImport } from './routes/seat-assignment'
-import { Route as AvailableFlightRouteImport } from './routes/available-flight'
+import { Route as FlightsRouteImport } from './routes/flights'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VoucherGeneratorRoute = VoucherGeneratorRouteImport.update({
@@ -19,14 +20,19 @@ const VoucherGeneratorRoute = VoucherGeneratorRouteImport.update({
   path: '/voucher-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserGuideRoute = UserGuideRouteImport.update({
+  id: '/user-guide',
+  path: '/user-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SeatAssignmentRoute = SeatAssignmentRouteImport.update({
   id: '/seat-assignment',
   path: '/seat-assignment',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AvailableFlightRoute = AvailableFlightRouteImport.update({
-  id: '/available-flight',
-  path: '/available-flight',
+const FlightsRoute = FlightsRouteImport.update({
+  id: '/flights',
+  path: '/flights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,44 +43,55 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/available-flight': typeof AvailableFlightRoute
+  '/flights': typeof FlightsRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/user-guide': typeof UserGuideRoute
   '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/available-flight': typeof AvailableFlightRoute
+  '/flights': typeof FlightsRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/user-guide': typeof UserGuideRoute
   '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/available-flight': typeof AvailableFlightRoute
+  '/flights': typeof FlightsRoute
   '/seat-assignment': typeof SeatAssignmentRoute
+  '/user-guide': typeof UserGuideRoute
   '/voucher-generator': typeof VoucherGeneratorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/available-flight'
+    | '/flights'
     | '/seat-assignment'
+    | '/user-guide'
     | '/voucher-generator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/available-flight' | '/seat-assignment' | '/voucher-generator'
+  to:
+    | '/'
+    | '/flights'
+    | '/seat-assignment'
+    | '/user-guide'
+    | '/voucher-generator'
   id:
     | '__root__'
     | '/'
-    | '/available-flight'
+    | '/flights'
     | '/seat-assignment'
+    | '/user-guide'
     | '/voucher-generator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AvailableFlightRoute: typeof AvailableFlightRoute
+  FlightsRoute: typeof FlightsRoute
   SeatAssignmentRoute: typeof SeatAssignmentRoute
+  UserGuideRoute: typeof UserGuideRoute
   VoucherGeneratorRoute: typeof VoucherGeneratorRoute
 }
 
@@ -87,6 +104,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VoucherGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user-guide': {
+      id: '/user-guide'
+      path: '/user-guide'
+      fullPath: '/user-guide'
+      preLoaderRoute: typeof UserGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/seat-assignment': {
       id: '/seat-assignment'
       path: '/seat-assignment'
@@ -94,11 +118,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SeatAssignmentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/available-flight': {
-      id: '/available-flight'
-      path: '/available-flight'
-      fullPath: '/available-flight'
-      preLoaderRoute: typeof AvailableFlightRouteImport
+    '/flights': {
+      id: '/flights'
+      path: '/flights'
+      fullPath: '/flights'
+      preLoaderRoute: typeof FlightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,8 +137,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AvailableFlightRoute: AvailableFlightRoute,
+  FlightsRoute: FlightsRoute,
   SeatAssignmentRoute: SeatAssignmentRoute,
+  UserGuideRoute: UserGuideRoute,
   VoucherGeneratorRoute: VoucherGeneratorRoute,
 }
 export const routeTree = rootRouteImport

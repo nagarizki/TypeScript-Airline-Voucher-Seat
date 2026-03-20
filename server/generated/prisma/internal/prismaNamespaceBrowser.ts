@@ -54,10 +54,11 @@ export const ModelName = {
   crew: 'crew',
   aircraftType: 'aircraftType',
   flight: 'flight',
+  flightCrew: 'flightCrew',
   flightVoucherSeatNumbers: 'flightVoucherSeatNumbers',
   flightAircraftType: 'flightAircraftType',
   seat: 'seat',
-  Voucher: 'Voucher'
+  voucher: 'voucher'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -98,11 +99,19 @@ export const FlightScalarFieldEnum = {
   flightNumber: 'flightNumber',
   departure: 'departure',
   arrival: 'arrival',
-  date: 'date',
-  crewId: 'crewId'
+  date: 'date'
 } as const
 
 export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum]
+
+
+export const FlightCrewScalarFieldEnum = {
+  id: 'id',
+  flightId: 'flightId',
+  crewId: 'crewId'
+} as const
+
+export type FlightCrewScalarFieldEnum = (typeof FlightCrewScalarFieldEnum)[keyof typeof FlightCrewScalarFieldEnum]
 
 
 export const FlightVoucherSeatNumbersScalarFieldEnum = {

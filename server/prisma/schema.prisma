@@ -18,7 +18,7 @@ model crew {
   name     String?
   password String
 
-  flights flight[]
+  flightCrew flightCrew[]
 }
 
 model aircraftType {
@@ -39,19 +39,28 @@ model flight {
   departure    String
   arrival      String
   date         DateTime
-  crewId       String
-  crew         crew     @relation(fields: [crewId], references: [id])
 
   flightVoucherSeatNumbers flightVoucherSeatNumbers[]
   flightAircraftType       flightAircraftType[]
+  flightCrew               flightCrew[]
+}
+
+model flightCrew {
+  id       String @id @default(cuid())
+  flightId String
+  flight   flight @relation(fields: [flightId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  crewId   String
+  crew     crew   @relation(fields: [crewId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+
+  @@map("flight_crew")
 }
 
 model flightVoucherSeatNumbers {
   id       String @id @default(cuid())
   flightId String
-  flight   flight @relation(fields: [flightId], references: [id])
+  flight   flight @relation(fields: [flightId], references: [id], onUpdate: NoAction, onDelete: NoAction)
   seatId   String
-  seat     seat   @relation(fields: [seatId], references: [id])
+  seat     seat   @relation(fields: [seatId], references: [id], onUpdate: NoAction, onDelete: NoAction)
 
   @@map("flight_voucher_seat_numbers")
 }
@@ -59,9 +68,9 @@ model flightVoucherSeatNumbers {
 model flightAircraftType {
   id             String @id @default(cuid())
   flightId       String
-  flight         flight @relation(fields: [flightId], references: [id])
+  flight         flight @relation(fields: [flightId], references: [id], onUpdate: NoAction, onDelete: NoAction)
   aircraftTypeId String
-  aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id])
+  aircraftType   aircraftType @relation(fields: [aircraftTypeId], references: [id], onUpdate: NoAction, onDelete: NoAction)
 
   @@map("flight_aircraft_type")
 }

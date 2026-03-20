@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `Voucher` model and its related types.
+ * This file exports the `voucher` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,10 +13,10 @@ import type * as $Enums from "../enums.js"
 import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
- * Model Voucher
+ * Model voucher
  * 
  */
-export type VoucherModel = runtime.Types.Result.DefaultSelection<Prisma.$VoucherPayload>
+export type voucherModel = runtime.Types.Result.DefaultSelection<Prisma.$voucherPayload>
 
 export type AggregateVoucher = {
   _count: VoucherCountAggregateOutputType | null
@@ -125,37 +125,37 @@ export type VoucherCountAggregateInputType = {
 
 export type VoucherAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Voucher to aggregate.
+   * Filter which voucher to aggregate.
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Vouchers to fetch.
+   * Determine the order of vouchers to fetch.
    */
-  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
+  orderBy?: Prisma.voucherOrderByWithRelationInput | Prisma.voucherOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.VoucherWhereUniqueInput
+  cursor?: Prisma.voucherWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Vouchers from the position of the cursor.
+   * Take `±n` vouchers from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Vouchers.
+   * Skip the first `n` vouchers.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned Vouchers
+   * Count returned vouchers
   **/
   _count?: true | VoucherCountAggregateInputType
   /**
@@ -195,11 +195,11 @@ export type GetVoucherAggregateType<T extends VoucherAggregateArgs> = {
 
 
 
-export type VoucherGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.VoucherWhereInput
-  orderBy?: Prisma.VoucherOrderByWithAggregationInput | Prisma.VoucherOrderByWithAggregationInput[]
+export type voucherGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.voucherWhereInput
+  orderBy?: Prisma.voucherOrderByWithAggregationInput | Prisma.voucherOrderByWithAggregationInput[]
   by: Prisma.VoucherScalarFieldEnum[] | Prisma.VoucherScalarFieldEnum
-  having?: Prisma.VoucherScalarWhereWithAggregatesInput
+  having?: Prisma.voucherScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: VoucherCountAggregateInputType | true
@@ -227,7 +227,7 @@ export type VoucherGroupByOutputType = {
   _max: VoucherMaxAggregateOutputType | null
 }
 
-type GetVoucherGroupByPayload<T extends VoucherGroupByArgs> = Prisma.PrismaPromise<
+type GetVoucherGroupByPayload<T extends voucherGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<VoucherGroupByOutputType, T['by']> &
       {
@@ -242,23 +242,23 @@ type GetVoucherGroupByPayload<T extends VoucherGroupByArgs> = Prisma.PrismaPromi
 
 
 
-export type VoucherWhereInput = {
-  AND?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
-  OR?: Prisma.VoucherWhereInput[]
-  NOT?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
-  id?: Prisma.IntFilter<"Voucher"> | number
-  crew_name?: Prisma.StringFilter<"Voucher"> | string
-  crew_id?: Prisma.StringFilter<"Voucher"> | string
-  flight_number?: Prisma.StringFilter<"Voucher"> | string
-  flight_date?: Prisma.StringFilter<"Voucher"> | string
-  aircraft_type?: Prisma.StringFilter<"Voucher"> | string
-  seat1?: Prisma.StringFilter<"Voucher"> | string
-  seat2?: Prisma.StringFilter<"Voucher"> | string
-  seat3?: Prisma.StringFilter<"Voucher"> | string
-  created_at?: Prisma.DateTimeFilter<"Voucher"> | Date | string
+export type voucherWhereInput = {
+  AND?: Prisma.voucherWhereInput | Prisma.voucherWhereInput[]
+  OR?: Prisma.voucherWhereInput[]
+  NOT?: Prisma.voucherWhereInput | Prisma.voucherWhereInput[]
+  id?: Prisma.IntFilter<"voucher"> | number
+  crew_name?: Prisma.StringFilter<"voucher"> | string
+  crew_id?: Prisma.StringFilter<"voucher"> | string
+  flight_number?: Prisma.StringFilter<"voucher"> | string
+  flight_date?: Prisma.StringFilter<"voucher"> | string
+  aircraft_type?: Prisma.StringFilter<"voucher"> | string
+  seat1?: Prisma.StringFilter<"voucher"> | string
+  seat2?: Prisma.StringFilter<"voucher"> | string
+  seat3?: Prisma.StringFilter<"voucher"> | string
+  created_at?: Prisma.DateTimeFilter<"voucher"> | Date | string
 }
 
-export type VoucherOrderByWithRelationInput = {
+export type voucherOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   crew_name?: Prisma.SortOrder
   crew_id?: Prisma.SortOrder
@@ -271,23 +271,23 @@ export type VoucherOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
 }
 
-export type VoucherWhereUniqueInput = Prisma.AtLeast<{
+export type voucherWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  AND?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
-  OR?: Prisma.VoucherWhereInput[]
-  NOT?: Prisma.VoucherWhereInput | Prisma.VoucherWhereInput[]
-  crew_name?: Prisma.StringFilter<"Voucher"> | string
-  crew_id?: Prisma.StringFilter<"Voucher"> | string
-  flight_number?: Prisma.StringFilter<"Voucher"> | string
-  flight_date?: Prisma.StringFilter<"Voucher"> | string
-  aircraft_type?: Prisma.StringFilter<"Voucher"> | string
-  seat1?: Prisma.StringFilter<"Voucher"> | string
-  seat2?: Prisma.StringFilter<"Voucher"> | string
-  seat3?: Prisma.StringFilter<"Voucher"> | string
-  created_at?: Prisma.DateTimeFilter<"Voucher"> | Date | string
+  AND?: Prisma.voucherWhereInput | Prisma.voucherWhereInput[]
+  OR?: Prisma.voucherWhereInput[]
+  NOT?: Prisma.voucherWhereInput | Prisma.voucherWhereInput[]
+  crew_name?: Prisma.StringFilter<"voucher"> | string
+  crew_id?: Prisma.StringFilter<"voucher"> | string
+  flight_number?: Prisma.StringFilter<"voucher"> | string
+  flight_date?: Prisma.StringFilter<"voucher"> | string
+  aircraft_type?: Prisma.StringFilter<"voucher"> | string
+  seat1?: Prisma.StringFilter<"voucher"> | string
+  seat2?: Prisma.StringFilter<"voucher"> | string
+  seat3?: Prisma.StringFilter<"voucher"> | string
+  created_at?: Prisma.DateTimeFilter<"voucher"> | Date | string
 }, "id">
 
-export type VoucherOrderByWithAggregationInput = {
+export type voucherOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   crew_name?: Prisma.SortOrder
   crew_id?: Prisma.SortOrder
@@ -298,30 +298,30 @@ export type VoucherOrderByWithAggregationInput = {
   seat2?: Prisma.SortOrder
   seat3?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  _count?: Prisma.VoucherCountOrderByAggregateInput
-  _avg?: Prisma.VoucherAvgOrderByAggregateInput
-  _max?: Prisma.VoucherMaxOrderByAggregateInput
-  _min?: Prisma.VoucherMinOrderByAggregateInput
-  _sum?: Prisma.VoucherSumOrderByAggregateInput
+  _count?: Prisma.voucherCountOrderByAggregateInput
+  _avg?: Prisma.voucherAvgOrderByAggregateInput
+  _max?: Prisma.voucherMaxOrderByAggregateInput
+  _min?: Prisma.voucherMinOrderByAggregateInput
+  _sum?: Prisma.voucherSumOrderByAggregateInput
 }
 
-export type VoucherScalarWhereWithAggregatesInput = {
-  AND?: Prisma.VoucherScalarWhereWithAggregatesInput | Prisma.VoucherScalarWhereWithAggregatesInput[]
-  OR?: Prisma.VoucherScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.VoucherScalarWhereWithAggregatesInput | Prisma.VoucherScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Voucher"> | number
-  crew_name?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  crew_id?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  flight_number?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  flight_date?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  aircraft_type?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  seat1?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  seat2?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  seat3?: Prisma.StringWithAggregatesFilter<"Voucher"> | string
-  created_at?: Prisma.DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+export type voucherScalarWhereWithAggregatesInput = {
+  AND?: Prisma.voucherScalarWhereWithAggregatesInput | Prisma.voucherScalarWhereWithAggregatesInput[]
+  OR?: Prisma.voucherScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.voucherScalarWhereWithAggregatesInput | Prisma.voucherScalarWhereWithAggregatesInput[]
+  id?: Prisma.IntWithAggregatesFilter<"voucher"> | number
+  crew_name?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  crew_id?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  flight_number?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  flight_date?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  aircraft_type?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  seat1?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  seat2?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  seat3?: Prisma.StringWithAggregatesFilter<"voucher"> | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"voucher"> | Date | string
 }
 
-export type VoucherCreateInput = {
+export type voucherCreateInput = {
   crew_name: string
   crew_id: string
   flight_number: string
@@ -333,7 +333,7 @@ export type VoucherCreateInput = {
   created_at?: Date | string
 }
 
-export type VoucherUncheckedCreateInput = {
+export type voucherUncheckedCreateInput = {
   id?: number
   crew_name: string
   crew_id: string
@@ -346,7 +346,7 @@ export type VoucherUncheckedCreateInput = {
   created_at?: Date | string
 }
 
-export type VoucherUpdateInput = {
+export type voucherUpdateInput = {
   crew_name?: Prisma.StringFieldUpdateOperationsInput | string
   crew_id?: Prisma.StringFieldUpdateOperationsInput | string
   flight_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -358,7 +358,7 @@ export type VoucherUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type VoucherUncheckedUpdateInput = {
+export type voucherUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   crew_name?: Prisma.StringFieldUpdateOperationsInput | string
   crew_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -371,7 +371,7 @@ export type VoucherUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type VoucherCreateManyInput = {
+export type voucherCreateManyInput = {
   id?: number
   crew_name: string
   crew_id: string
@@ -384,7 +384,7 @@ export type VoucherCreateManyInput = {
   created_at?: Date | string
 }
 
-export type VoucherUpdateManyMutationInput = {
+export type voucherUpdateManyMutationInput = {
   crew_name?: Prisma.StringFieldUpdateOperationsInput | string
   crew_id?: Prisma.StringFieldUpdateOperationsInput | string
   flight_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -396,7 +396,7 @@ export type VoucherUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type VoucherUncheckedUpdateManyInput = {
+export type voucherUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   crew_name?: Prisma.StringFieldUpdateOperationsInput | string
   crew_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -409,7 +409,7 @@ export type VoucherUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type VoucherCountOrderByAggregateInput = {
+export type voucherCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   crew_name?: Prisma.SortOrder
   crew_id?: Prisma.SortOrder
@@ -422,24 +422,11 @@ export type VoucherCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
 }
 
-export type VoucherAvgOrderByAggregateInput = {
+export type voucherAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type VoucherMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  crew_name?: Prisma.SortOrder
-  crew_id?: Prisma.SortOrder
-  flight_number?: Prisma.SortOrder
-  flight_date?: Prisma.SortOrder
-  aircraft_type?: Prisma.SortOrder
-  seat1?: Prisma.SortOrder
-  seat2?: Prisma.SortOrder
-  seat3?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-}
-
-export type VoucherMinOrderByAggregateInput = {
+export type voucherMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   crew_name?: Prisma.SortOrder
   crew_id?: Prisma.SortOrder
@@ -452,13 +439,26 @@ export type VoucherMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
 }
 
-export type VoucherSumOrderByAggregateInput = {
+export type voucherMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  crew_name?: Prisma.SortOrder
+  crew_id?: Prisma.SortOrder
+  flight_number?: Prisma.SortOrder
+  flight_date?: Prisma.SortOrder
+  aircraft_type?: Prisma.SortOrder
+  seat1?: Prisma.SortOrder
+  seat2?: Prisma.SortOrder
+  seat3?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+}
+
+export type voucherSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
 
 
-export type VoucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type voucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   crew_name?: boolean
   crew_id?: boolean
@@ -471,7 +471,7 @@ export type VoucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   created_at?: boolean
 }, ExtArgs["result"]["voucher"]>
 
-export type VoucherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type voucherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   crew_name?: boolean
   crew_id?: boolean
@@ -484,7 +484,7 @@ export type VoucherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created_at?: boolean
 }, ExtArgs["result"]["voucher"]>
 
-export type VoucherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type voucherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   crew_name?: boolean
   crew_id?: boolean
@@ -497,7 +497,7 @@ export type VoucherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created_at?: boolean
 }, ExtArgs["result"]["voucher"]>
 
-export type VoucherSelectScalar = {
+export type voucherSelectScalar = {
   id?: boolean
   crew_name?: boolean
   crew_id?: boolean
@@ -510,10 +510,10 @@ export type VoucherSelectScalar = {
   created_at?: boolean
 }
 
-export type VoucherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "crew_name" | "crew_id" | "flight_number" | "flight_date" | "aircraft_type" | "seat1" | "seat2" | "seat3" | "created_at", ExtArgs["result"]["voucher"]>
+export type voucherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "crew_name" | "crew_id" | "flight_number" | "flight_date" | "aircraft_type" | "seat1" | "seat2" | "seat3" | "created_at", ExtArgs["result"]["voucher"]>
 
-export type $VoucherPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "Voucher"
+export type $voucherPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "voucher"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -530,18 +530,18 @@ export type $VoucherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   composites: {}
 }
 
-export type VoucherGetPayload<S extends boolean | null | undefined | VoucherDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$VoucherPayload, S>
+export type voucherGetPayload<S extends boolean | null | undefined | voucherDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$voucherPayload, S>
 
-export type VoucherCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<VoucherFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type voucherCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<voucherFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: VoucherCountAggregateInputType | true
   }
 
-export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Voucher'], meta: { name: 'Voucher' } }
+export interface voucherDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['voucher'], meta: { name: 'voucher' } }
   /**
    * Find zero or one Voucher that matches the filter.
-   * @param {VoucherFindUniqueArgs} args - Arguments to find a Voucher
+   * @param {voucherFindUniqueArgs} args - Arguments to find a Voucher
    * @example
    * // Get one Voucher
    * const voucher = await prisma.voucher.findUnique({
@@ -550,12 +550,12 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findUnique<T extends VoucherFindUniqueArgs>(args: Prisma.SelectSubset<T, VoucherFindUniqueArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends voucherFindUniqueArgs>(args: Prisma.SelectSubset<T, voucherFindUniqueArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one Voucher that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {VoucherFindUniqueOrThrowArgs} args - Arguments to find a Voucher
+   * @param {voucherFindUniqueOrThrowArgs} args - Arguments to find a Voucher
    * @example
    * // Get one Voucher
    * const voucher = await prisma.voucher.findUniqueOrThrow({
@@ -564,13 +564,13 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findUniqueOrThrow<T extends VoucherFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, VoucherFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends voucherFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, voucherFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Voucher that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherFindFirstArgs} args - Arguments to find a Voucher
+   * @param {voucherFindFirstArgs} args - Arguments to find a Voucher
    * @example
    * // Get one Voucher
    * const voucher = await prisma.voucher.findFirst({
@@ -579,14 +579,14 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findFirst<T extends VoucherFindFirstArgs>(args?: Prisma.SelectSubset<T, VoucherFindFirstArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends voucherFindFirstArgs>(args?: Prisma.SelectSubset<T, voucherFindFirstArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Voucher that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherFindFirstOrThrowArgs} args - Arguments to find a Voucher
+   * @param {voucherFindFirstOrThrowArgs} args - Arguments to find a Voucher
    * @example
    * // Get one Voucher
    * const voucher = await prisma.voucher.findFirstOrThrow({
@@ -595,13 +595,13 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findFirstOrThrow<T extends VoucherFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, VoucherFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends voucherFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, voucherFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more Vouchers that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {voucherFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Vouchers
    * const vouchers = await prisma.voucher.findMany()
@@ -613,11 +613,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * const voucherWithIdOnly = await prisma.voucher.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends VoucherFindManyArgs>(args?: Prisma.SelectSubset<T, VoucherFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends voucherFindManyArgs>(args?: Prisma.SelectSubset<T, voucherFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a Voucher.
-   * @param {VoucherCreateArgs} args - Arguments to create a Voucher.
+   * @param {voucherCreateArgs} args - Arguments to create a Voucher.
    * @example
    * // Create one Voucher
    * const Voucher = await prisma.voucher.create({
@@ -627,11 +627,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  create<T extends VoucherCreateArgs>(args: Prisma.SelectSubset<T, VoucherCreateArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends voucherCreateArgs>(args: Prisma.SelectSubset<T, voucherCreateArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many Vouchers.
-   * @param {VoucherCreateManyArgs} args - Arguments to create many Vouchers.
+   * @param {voucherCreateManyArgs} args - Arguments to create many Vouchers.
    * @example
    * // Create many Vouchers
    * const voucher = await prisma.voucher.createMany({
@@ -641,11 +641,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    *     
    */
-  createMany<T extends VoucherCreateManyArgs>(args?: Prisma.SelectSubset<T, VoucherCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends voucherCreateManyArgs>(args?: Prisma.SelectSubset<T, voucherCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many Vouchers and returns the data saved in the database.
-   * @param {VoucherCreateManyAndReturnArgs} args - Arguments to create many Vouchers.
+   * @param {voucherCreateManyAndReturnArgs} args - Arguments to create many Vouchers.
    * @example
    * // Create many Vouchers
    * const voucher = await prisma.voucher.createManyAndReturn({
@@ -665,11 +665,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends VoucherCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, VoucherCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends voucherCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, voucherCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a Voucher.
-   * @param {VoucherDeleteArgs} args - Arguments to delete one Voucher.
+   * @param {voucherDeleteArgs} args - Arguments to delete one Voucher.
    * @example
    * // Delete one Voucher
    * const Voucher = await prisma.voucher.delete({
@@ -679,11 +679,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  delete<T extends VoucherDeleteArgs>(args: Prisma.SelectSubset<T, VoucherDeleteArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends voucherDeleteArgs>(args: Prisma.SelectSubset<T, voucherDeleteArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one Voucher.
-   * @param {VoucherUpdateArgs} args - Arguments to update one Voucher.
+   * @param {voucherUpdateArgs} args - Arguments to update one Voucher.
    * @example
    * // Update one Voucher
    * const voucher = await prisma.voucher.update({
@@ -696,11 +696,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  update<T extends VoucherUpdateArgs>(args: Prisma.SelectSubset<T, VoucherUpdateArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends voucherUpdateArgs>(args: Prisma.SelectSubset<T, voucherUpdateArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more Vouchers.
-   * @param {VoucherDeleteManyArgs} args - Arguments to filter Vouchers to delete.
+   * @param {voucherDeleteManyArgs} args - Arguments to filter Vouchers to delete.
    * @example
    * // Delete a few Vouchers
    * const { count } = await prisma.voucher.deleteMany({
@@ -710,13 +710,13 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  deleteMany<T extends VoucherDeleteManyArgs>(args?: Prisma.SelectSubset<T, VoucherDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends voucherDeleteManyArgs>(args?: Prisma.SelectSubset<T, voucherDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Vouchers.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {voucherUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many Vouchers
    * const voucher = await prisma.voucher.updateMany({
@@ -729,11 +729,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  updateMany<T extends VoucherUpdateManyArgs>(args: Prisma.SelectSubset<T, VoucherUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends voucherUpdateManyArgs>(args: Prisma.SelectSubset<T, voucherUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Vouchers and returns the data updated in the database.
-   * @param {VoucherUpdateManyAndReturnArgs} args - Arguments to update many Vouchers.
+   * @param {voucherUpdateManyAndReturnArgs} args - Arguments to update many Vouchers.
    * @example
    * // Update many Vouchers
    * const voucher = await prisma.voucher.updateManyAndReturn({
@@ -759,11 +759,11 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends VoucherUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, VoucherUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends voucherUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, voucherUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Voucher.
-   * @param {VoucherUpsertArgs} args - Arguments to update or create a Voucher.
+   * @param {voucherUpsertArgs} args - Arguments to update or create a Voucher.
    * @example
    * // Update or create a Voucher
    * const voucher = await prisma.voucher.upsert({
@@ -778,14 +778,14 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  upsert<T extends VoucherUpsertArgs>(args: Prisma.SelectSubset<T, VoucherUpsertArgs<ExtArgs>>): Prisma.Prisma__VoucherClient<runtime.Types.Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends voucherUpsertArgs>(args: Prisma.SelectSubset<T, voucherUpsertArgs<ExtArgs>>): Prisma.Prisma__voucherClient<runtime.Types.Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of Vouchers.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherCountArgs} args - Arguments to filter Vouchers to count.
+   * @param {voucherCountArgs} args - Arguments to filter Vouchers to count.
    * @example
    * // Count the number of Vouchers
    * const count = await prisma.voucher.count({
@@ -794,8 +794,8 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
   **/
-  count<T extends VoucherCountArgs>(
-    args?: Prisma.Subset<T, VoucherCountArgs>,
+  count<T extends voucherCountArgs>(
+    args?: Prisma.Subset<T, voucherCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -834,7 +834,7 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Group by Voucher.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {VoucherGroupByArgs} args - Group by arguments.
+   * @param {voucherGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -849,14 +849,14 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * 
   **/
   groupBy<
-    T extends VoucherGroupByArgs,
+    T extends voucherGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: VoucherGroupByArgs['orderBy'] }
-      : { orderBy?: VoucherGroupByArgs['orderBy'] },
+      ? { orderBy: voucherGroupByArgs['orderBy'] }
+      : { orderBy?: voucherGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -905,20 +905,20 @@ export interface VoucherDelegate<ExtArgs extends runtime.Types.Extensions.Intern
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, VoucherGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVoucherGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, voucherGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVoucherGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the Voucher model
+ * Fields of the voucher model
  */
-readonly fields: VoucherFieldRefs;
+readonly fields: voucherFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for Voucher.
+ * The delegate class that acts as a "Promise-like" for voucher.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__voucherClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -946,383 +946,383 @@ export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends runtime.
 
 
 /**
- * Fields of the Voucher model
+ * Fields of the voucher model
  */
-export interface VoucherFieldRefs {
-  readonly id: Prisma.FieldRef<"Voucher", 'Int'>
-  readonly crew_name: Prisma.FieldRef<"Voucher", 'String'>
-  readonly crew_id: Prisma.FieldRef<"Voucher", 'String'>
-  readonly flight_number: Prisma.FieldRef<"Voucher", 'String'>
-  readonly flight_date: Prisma.FieldRef<"Voucher", 'String'>
-  readonly aircraft_type: Prisma.FieldRef<"Voucher", 'String'>
-  readonly seat1: Prisma.FieldRef<"Voucher", 'String'>
-  readonly seat2: Prisma.FieldRef<"Voucher", 'String'>
-  readonly seat3: Prisma.FieldRef<"Voucher", 'String'>
-  readonly created_at: Prisma.FieldRef<"Voucher", 'DateTime'>
+export interface voucherFieldRefs {
+  readonly id: Prisma.FieldRef<"voucher", 'Int'>
+  readonly crew_name: Prisma.FieldRef<"voucher", 'String'>
+  readonly crew_id: Prisma.FieldRef<"voucher", 'String'>
+  readonly flight_number: Prisma.FieldRef<"voucher", 'String'>
+  readonly flight_date: Prisma.FieldRef<"voucher", 'String'>
+  readonly aircraft_type: Prisma.FieldRef<"voucher", 'String'>
+  readonly seat1: Prisma.FieldRef<"voucher", 'String'>
+  readonly seat2: Prisma.FieldRef<"voucher", 'String'>
+  readonly seat3: Prisma.FieldRef<"voucher", 'String'>
+  readonly created_at: Prisma.FieldRef<"voucher", 'DateTime'>
 }
     
 
 // Custom InputTypes
 /**
- * Voucher findUnique
+ * voucher findUnique
  */
-export type VoucherFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter, which Voucher to fetch.
+   * Filter, which voucher to fetch.
    */
-  where: Prisma.VoucherWhereUniqueInput
+  where: Prisma.voucherWhereUniqueInput
 }
 
 /**
- * Voucher findUniqueOrThrow
+ * voucher findUniqueOrThrow
  */
-export type VoucherFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter, which Voucher to fetch.
+   * Filter, which voucher to fetch.
    */
-  where: Prisma.VoucherWhereUniqueInput
+  where: Prisma.voucherWhereUniqueInput
 }
 
 /**
- * Voucher findFirst
+ * voucher findFirst
  */
-export type VoucherFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter, which Voucher to fetch.
+   * Filter, which voucher to fetch.
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Vouchers to fetch.
+   * Determine the order of vouchers to fetch.
    */
-  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
+  orderBy?: Prisma.voucherOrderByWithRelationInput | Prisma.voucherOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Vouchers.
+   * Sets the position for searching for vouchers.
    */
-  cursor?: Prisma.VoucherWhereUniqueInput
+  cursor?: Prisma.voucherWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Vouchers from the position of the cursor.
+   * Take `±n` vouchers from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Vouchers.
+   * Skip the first `n` vouchers.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Vouchers.
+   * Filter by unique combinations of vouchers.
    */
   distinct?: Prisma.VoucherScalarFieldEnum | Prisma.VoucherScalarFieldEnum[]
 }
 
 /**
- * Voucher findFirstOrThrow
+ * voucher findFirstOrThrow
  */
-export type VoucherFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter, which Voucher to fetch.
+   * Filter, which voucher to fetch.
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Vouchers to fetch.
+   * Determine the order of vouchers to fetch.
    */
-  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
+  orderBy?: Prisma.voucherOrderByWithRelationInput | Prisma.voucherOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Vouchers.
+   * Sets the position for searching for vouchers.
    */
-  cursor?: Prisma.VoucherWhereUniqueInput
+  cursor?: Prisma.voucherWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Vouchers from the position of the cursor.
+   * Take `±n` vouchers from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Vouchers.
+   * Skip the first `n` vouchers.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Vouchers.
+   * Filter by unique combinations of vouchers.
    */
   distinct?: Prisma.VoucherScalarFieldEnum | Prisma.VoucherScalarFieldEnum[]
 }
 
 /**
- * Voucher findMany
+ * voucher findMany
  */
-export type VoucherFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter, which Vouchers to fetch.
+   * Filter, which vouchers to fetch.
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Vouchers to fetch.
+   * Determine the order of vouchers to fetch.
    */
-  orderBy?: Prisma.VoucherOrderByWithRelationInput | Prisma.VoucherOrderByWithRelationInput[]
+  orderBy?: Prisma.voucherOrderByWithRelationInput | Prisma.voucherOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing Vouchers.
+   * Sets the position for listing vouchers.
    */
-  cursor?: Prisma.VoucherWhereUniqueInput
+  cursor?: Prisma.voucherWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Vouchers from the position of the cursor.
+   * Take `±n` vouchers from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Vouchers.
+   * Skip the first `n` vouchers.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Vouchers.
+   * Filter by unique combinations of vouchers.
    */
   distinct?: Prisma.VoucherScalarFieldEnum | Prisma.VoucherScalarFieldEnum[]
 }
 
 /**
- * Voucher create
+ * voucher create
  */
-export type VoucherCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * The data needed to create a Voucher.
+   * The data needed to create a voucher.
    */
-  data: Prisma.XOR<Prisma.VoucherCreateInput, Prisma.VoucherUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.voucherCreateInput, Prisma.voucherUncheckedCreateInput>
 }
 
 /**
- * Voucher createMany
+ * voucher createMany
  */
-export type VoucherCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many Vouchers.
+   * The data used to create many vouchers.
    */
-  data: Prisma.VoucherCreateManyInput | Prisma.VoucherCreateManyInput[]
+  data: Prisma.voucherCreateManyInput | Prisma.voucherCreateManyInput[]
 }
 
 /**
- * Voucher createManyAndReturn
+ * voucher createManyAndReturn
  */
-export type VoucherCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.voucherSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * The data used to create many Vouchers.
+   * The data used to create many vouchers.
    */
-  data: Prisma.VoucherCreateManyInput | Prisma.VoucherCreateManyInput[]
+  data: Prisma.voucherCreateManyInput | Prisma.voucherCreateManyInput[]
 }
 
 /**
- * Voucher update
+ * voucher update
  */
-export type VoucherUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * The data needed to update a Voucher.
+   * The data needed to update a voucher.
    */
-  data: Prisma.XOR<Prisma.VoucherUpdateInput, Prisma.VoucherUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.voucherUpdateInput, Prisma.voucherUncheckedUpdateInput>
   /**
-   * Choose, which Voucher to update.
+   * Choose, which voucher to update.
    */
-  where: Prisma.VoucherWhereUniqueInput
+  where: Prisma.voucherWhereUniqueInput
 }
 
 /**
- * Voucher updateMany
+ * voucher updateMany
  */
-export type VoucherUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update Vouchers.
+   * The data used to update vouchers.
    */
-  data: Prisma.XOR<Prisma.VoucherUpdateManyMutationInput, Prisma.VoucherUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.voucherUpdateManyMutationInput, Prisma.voucherUncheckedUpdateManyInput>
   /**
-   * Filter which Vouchers to update
+   * Filter which vouchers to update
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
-   * Limit how many Vouchers to update.
+   * Limit how many vouchers to update.
    */
   limit?: number
 }
 
 /**
- * Voucher updateManyAndReturn
+ * voucher updateManyAndReturn
  */
-export type VoucherUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.voucherSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * The data used to update Vouchers.
+   * The data used to update vouchers.
    */
-  data: Prisma.XOR<Prisma.VoucherUpdateManyMutationInput, Prisma.VoucherUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.voucherUpdateManyMutationInput, Prisma.voucherUncheckedUpdateManyInput>
   /**
-   * Filter which Vouchers to update
+   * Filter which vouchers to update
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
-   * Limit how many Vouchers to update.
+   * Limit how many vouchers to update.
    */
   limit?: number
 }
 
 /**
- * Voucher upsert
+ * voucher upsert
  */
-export type VoucherUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * The filter to search for the Voucher to update in case it exists.
+   * The filter to search for the voucher to update in case it exists.
    */
-  where: Prisma.VoucherWhereUniqueInput
+  where: Prisma.voucherWhereUniqueInput
   /**
-   * In case the Voucher found by the `where` argument doesn't exist, create a new Voucher with this data.
+   * In case the voucher found by the `where` argument doesn't exist, create a new voucher with this data.
    */
-  create: Prisma.XOR<Prisma.VoucherCreateInput, Prisma.VoucherUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.voucherCreateInput, Prisma.voucherUncheckedCreateInput>
   /**
-   * In case the Voucher was found with the provided `where` argument, update it with this data.
+   * In case the voucher was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.VoucherUpdateInput, Prisma.VoucherUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.voucherUpdateInput, Prisma.voucherUncheckedUpdateInput>
 }
 
 /**
- * Voucher delete
+ * voucher delete
  */
-export type VoucherDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
   /**
-   * Filter which Voucher to delete.
+   * Filter which voucher to delete.
    */
-  where: Prisma.VoucherWhereUniqueInput
+  where: Prisma.voucherWhereUniqueInput
 }
 
 /**
- * Voucher deleteMany
+ * voucher deleteMany
  */
-export type VoucherDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Vouchers to delete
+   * Filter which vouchers to delete
    */
-  where?: Prisma.VoucherWhereInput
+  where?: Prisma.voucherWhereInput
   /**
-   * Limit how many Vouchers to delete.
+   * Limit how many vouchers to delete.
    */
   limit?: number
 }
 
 /**
- * Voucher without action
+ * voucher without action
  */
-export type VoucherDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type voucherDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Voucher
+   * Select specific fields to fetch from the voucher
    */
-  select?: Prisma.VoucherSelect<ExtArgs> | null
+  select?: Prisma.voucherSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Voucher
+   * Omit specific fields from the voucher
    */
-  omit?: Prisma.VoucherOmit<ExtArgs> | null
+  omit?: Prisma.voucherOmit<ExtArgs> | null
 }

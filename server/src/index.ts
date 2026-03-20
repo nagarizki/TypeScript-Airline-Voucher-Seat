@@ -43,10 +43,20 @@ export const app = new Hono()
 .post("/api/check", async (c) => {
   const { flightNumber, date } = await c.req.json();
 
+  // Convert DD-MM-YYYY to YYYY-MM-DD for database query
+  let dbDate = date;
+  if (date && date.includes('-')) {
+    const parts = date.split('-');
+    if (parts.length === 3 && parts[0] && parts[0].length === 2) {
+      // DD-MM-YYYY format - convert to YYYY-MM-DD
+      dbDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+  }
+
   const existingVouchers = await prisma.voucher.findMany({
     where: {
       flight_number: flightNumber,
-      flight_date: date,
+      flight_date: dbDate,
     },
   });
 
@@ -54,7 +64,17 @@ export const app = new Hono()
 })
 
 .post("/api/generate", async (c) => {
-  const { name, id, flightNumber, date, aircraft } = await c.req.json();
+  const { name, id, flightNumber, date, aircraft, departure, arrival } = await c.req.json();
+
+  // Convert DD-MM-YYYY to YYYY-MM-DD for database storage
+  let dbDate = date;
+  if (date && date.includes('-')) {
+    const parts = date.split('-');
+    if (parts.length === 3 && parts[0].length === 2) {
+      // DD-MM-YYYY format - convert to YYYY-MM-DD
+      dbDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+  }
 
   // Get seat count based on aircraft type
   let seatCount = 0;
@@ -72,52 +92,165 @@ export const app = new Hono()
       seatCount = 20;
   }
 
-  // Generate random seat numbers
+  // Generate all possible seat numbers based on aircraft layout
   const rows = Math.ceil(seatCount / 6);
-  const seats: string[] = [];
+  const allSeats: string[] = [];
   for (let r = 1; r <= rows; r++) {
     for (let s = 0; s < 6; s++) {
-      if (seats.length >= seatCount) break;
+      if (allSeats.length >= seatCount) break;
       const seatLetter = String.fromCharCode(65 + s); // A, B, C, D, E, F
-      seats.push(`${r}${seatLetter}`);
+      allSeats.push(`${r}${seatLetter}`);
     }
   }
 
-  // Create voucher records (3 seats per voucher)
-  const createdSeats: string[] = [];
-  for (let i = 0; i < seats.length; i += 3) {
-    const seat1 = seats[i] || "";
-    const seat2 = seats[i + 1] || "";
-    const seat3 = seats[i + 2] || "";
+  // Generate exactly 3 random non-repeating seats
+  const shuffled = [...allSeats].sort(() => Math.random() - 0.5);
+  const selectedSeats = shuffled.slice(0, 3);
 
-    await prisma.voucher.create({
+  // Parse crew IDs and names
+  const crewIds = typeof id === 'string' ? id.split(',').map((s: string) => s.trim()).filter(Boolean) : [];
+  const crewNames = typeof name === 'string' ? name.split(',').map((s: string) => s.trim()).filter(Boolean) : [];
+
+  // Check if flight exists
+  const existingFlight = await prisma.flight.findFirst({
+    where: {
+      flightNumber,
+      date: new Date(dbDate),
+    },
+  });
+
+  let flightId: string;
+
+  if (!existingFlight) {
+    // Create new flight with flight_aircraft_type and flight_crew
+    // First, get or create the aircraft type
+    const aircraftType = await prisma.aircraftType.findFirst({
+      where: { name: aircraft },
+    });
+
+    if (!aircraftType) {
+      return c.json({ success: false, message: "Aircraft type not found" }, { status: 400 });
+    }
+
+    // Create the flight
+    const newFlight = await prisma.flight.create({
       data: {
-        crew_name: name,
-        crew_id: id,
-        flight_number: flightNumber,
-        flight_date: date,
-        aircraft_type: aircraft,
-        seat1,
-        seat2,
-        seat3,
+        flightNumber,
+        departure: departure || "CGK",
+        arrival: arrival || "UNKNOWN",
+        date: new Date(dbDate),
+      },
+    });
+    flightId = newFlight.id;
+
+    // Create flight_aircraft_type relation
+    await prisma.flightAircraftType.create({
+      data: {
+        flightId,
+        aircraftTypeId: aircraftType.id,
       },
     });
 
-    if (seat1) createdSeats.push(seat1);
-    if (seat2) createdSeats.push(seat2);
-    if (seat3) createdSeats.push(seat3);
+    // Create flight_crew relations for each crew member
+    for (const crewId of crewIds) {
+      const crew = await prisma.crew.findUnique({
+        where: { id: crewId },
+      });
+
+      if (crew) {
+        await prisma.flightCrew.create({
+          data: {
+            flightId,
+            crewId: crew.id,
+          },
+        });
+      }
+    }
+  } else {
+    // Existing flight - update flight_aircraft_type and flight_crew
+    flightId = existingFlight.id;
+
+    // Update departure and arrival if provided
+    await prisma.flight.update({
+      where: { id: flightId },
+      data: {
+        departure: departure || existingFlight.departure,
+        arrival: arrival || existingFlight.arrival,
+      },
+    });
+
+    // Get aircraft type
+    const aircraftType = await prisma.aircraftType.findFirst({
+      where: { name: aircraft },
+    });
+
+    if (aircraftType) {
+      // Delete existing flight_aircraft_type and create new one
+      await prisma.flightAircraftType.deleteMany({
+        where: { flightId },
+      });
+
+      await prisma.flightAircraftType.create({
+        data: {
+          flightId,
+          aircraftTypeId: aircraftType.id,
+        },
+      });
+    }
+
+    // Delete existing flight_crew and create new ones
+    await prisma.flightCrew.deleteMany({
+      where: { flightId },
+    });
+
+    for (const crewId of crewIds) {
+      const crew = await prisma.crew.findUnique({
+        where: { id: crewId },
+      });
+
+      if (crew) {
+        await prisma.flightCrew.create({
+          data: {
+            flightId,
+            crewId: crew.id,
+          },
+        });
+      }
+    }
   }
 
-  return c.json({ success: true, seats: createdSeats });
+  // Create a single voucher record with exactly 3 seats
+  const seat1 = selectedSeats[0] || "";
+  const seat2 = selectedSeats[1] || "";
+  const seat3 = selectedSeats[2] || "";
+
+  await prisma.voucher.create({
+    data: {
+      crew_name: name,
+      crew_id: id,
+      flight_number: flightNumber,
+      flight_date: dbDate,
+      aircraft_type: aircraft,
+      seat1,
+      seat2,
+      seat3,
+    },
+  });
+
+  return c.json({ success: true, seats: selectedSeats });
 })
 
 .get("/api/flights", async (c) => {
   const flights = await prisma.flight.findMany({
     include: {
-      crew: {
-        select: {
-          name: true,
-          email: true,
+      flightCrew: {
+        include: {
+          crew: {
+            select: {
+              name: true,
+              email: true,
+            },
+          },
         },
       },
       flightAircraftType: {
@@ -131,22 +264,52 @@ export const app = new Hono()
     },
   });
 
-  return c.json({ success: true, flights });
+  // Check if vouchers exist for each flight
+  const flightsWithVoucherStatus = await Promise.all(
+    flights.map(async (flight) => {
+      const vouchers = await prisma.voucher.findMany({
+        where: {
+          flight_number: flight.flightNumber,
+        },
+      });
+      
+      return {
+        ...flight,
+        hasVouchers: vouchers.length > 0,
+      };
+    })
+  );
+
+  return c.json({ success: true, flights: flightsWithVoucherStatus });
 })
 
 .get("/api/flights/:flightNumber/:date", async (c) => {
   const { flightNumber, date } = c.req.param();
   
+  // Convert DD-MM-YYYY to YYYY-MM-DD for database query
+  let dbDate = date;
+  if (date && date.includes('-')) {
+    const parts = date.split('-');
+    if (parts.length === 3 && parts[0] && parts[0].length === 2) {
+      // DD-MM-YYYY format - convert to YYYY-MM-DD
+      dbDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+  }
+
   const flight = await prisma.flight.findFirst({
     where: {
       flightNumber,
-      date: new Date(date),
+      date: new Date(dbDate),
     },
     include: {
-      crew: {
-        select: {
-          name: true,
-          email: true,
+      flightCrew: {
+        include: {
+          crew: {
+            select: {
+              name: true,
+              email: true,
+            },
+          },
         },
       },
       flightAircraftType: {
@@ -166,15 +329,58 @@ export const app = new Hono()
     return c.json({ success: false, message: "Flight not found" }, { status: 404 });
   }
 
-  // Get assigned seat IDs
-  const assignedSeatIds = flight.flightVoucherSeatNumbers.map(v => v.seatId);
+  // Get voucher winner seats for this flight
+  // Query all vouchers for this flight to handle any date format issues
+  const vouchers = await prisma.voucher.findMany({
+    where: {
+      flight_number: flightNumber,
+    },
+  });
 
-  // Mark seats as available/taken
+  // Extract all voucher winner seat numbers
+  const voucherWinnerSeats: string[] = [];
+  const voucherWinnerSeatIds: string[] = [];
+  const voucherWinners: Array<{ seats: string[] }> = [];
+  
+  // Get all seat numbers from aircraft type to map seat numbers to IDs
+  const allSeats = flight.flightAircraftType[0]?.aircraftType.seats || [];
+  const seatNumberToIdMap = new Map(allSeats.map(s => [s.seatNumber, s.id]));
+
+  for (const voucher of vouchers) {
+    const seats: string[] = [];
+    if (voucher.seat1) {
+      voucherWinnerSeats.push(voucher.seat1);
+      const seatId = seatNumberToIdMap.get(voucher.seat1);
+      if (seatId) voucherWinnerSeatIds.push(seatId);
+      seats.push(voucher.seat1);
+    }
+    if (voucher.seat2) {
+      voucherWinnerSeats.push(voucher.seat2);
+      const seatId = seatNumberToIdMap.get(voucher.seat2);
+      if (seatId) voucherWinnerSeatIds.push(seatId);
+      seats.push(voucher.seat2);
+    }
+    if (voucher.seat3) {
+      voucherWinnerSeats.push(voucher.seat3);
+      const seatId = seatNumberToIdMap.get(voucher.seat3);
+      if (seatId) voucherWinnerSeatIds.push(seatId);
+      seats.push(voucher.seat3);
+    }
+    if (seats.length > 0) {
+      voucherWinners.push({
+        seats,
+      });
+    }
+  }
+
+  // Default: all seats are occupied (not available)
+  // Only voucher winner seats are available
   const seats = flight.flightAircraftType[0]?.aircraftType.seats.map(seat => ({
     id: seat.id,
     seatNumber: seat.seatNumber,
     class: seat.class,
-    isAvailable: !assignedSeatIds.includes(seat.id),
+    isAvailable: voucherWinnerSeatIds.includes(seat.id),
+    isVoucherWinner: voucherWinnerSeats.includes(seat.seatNumber),
   })) || [];
 
   return c.json({
@@ -188,8 +394,102 @@ export const app = new Hono()
       aircraftType: flight.flightAircraftType[0]?.aircraftType.name,
       seatType: flight.flightAircraftType[0]?.aircraftType.seatType,
       seats,
+      voucherWinners,
     },
   });
+})
+
+.get("/api/crew", async (c) => {
+  const crew = await prisma.crew.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  return c.json({ success: true, crew });
+})
+
+.get("/api/flights/search", async (c) => {
+  const query = c.req.query('q') || '';
+  
+  const flights = await prisma.flight.findMany({
+    where: {
+      flightNumber: {
+        contains: query,
+      },
+    },
+    include: {
+      flightCrew: {
+        include: {
+          crew: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+        },
+      },
+      flightAircraftType: {
+        include: {
+          aircraftType: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+    },
+    take: 10,
+  });
+
+  return c.json({ success: true, flights });
+})
+
+.post("/api/crew/by-ids", async (c) => {
+  const { ids } = await c.req.json();
+  
+  if (!ids || !Array.isArray(ids) || ids.length === 0) {
+    return c.json({ success: true, crew: [] });
+  }
+
+  const crew = await prisma.crew.findMany({
+    where: {
+      id: { in: ids },
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  return c.json({ success: true, crew });
+})
+
+.get("/api/flights/:flightNumber", async (c) => {
+  const { flightNumber } = c.req.param();
+  
+  const flight = await prisma.flight.findFirst({
+    where: {
+      flightNumber,
+    },
+    select: {
+      id: true,
+      flightNumber: true,
+      departure: true,
+      arrival: true,
+      date: true,
+    },
+  });
+
+  if (!flight) {
+    return c.json({ success: false, message: "Flight not found" }, { status: 404 });
+  }
+
+  return c.json({ success: true, flight });
 })
 
 .post("/api/seats/assign", async (c) => {
@@ -221,6 +521,11 @@ export const app = new Hono()
 
   return c.json({ success: true, assigned: true });
 })
+
+// Catch-all route for client-side routing (must be last)
+app.get('*', (c) => {
+  return c.text('Not Found', 404);
+});
 
 export default app;
 

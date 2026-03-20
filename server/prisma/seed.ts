@@ -76,19 +76,32 @@ async function main() {
     await prisma.seat.createMany({ data: seats });
   }
 
-  // Get a crew for flights
-  const crew = await prisma.crew.findFirst();
-  if (!crew) throw new Error("No crew found");
-
   // Create flights
   const flights = [];
   for (const data of [
-    { flightNumber: "GA102", departure: "CGK", arrival: "HND", date: new Date("2025-07-12"), crewId: crew.id },
-    { flightNumber: "ID102", departure: "CGK", arrival: "HND", date: new Date("2025-07-12"), crewId: crew.id },
-    { flightNumber: "GA103", departure: "CGK", arrival: "NRT", date: new Date("2025-07-13"), crewId: crew.id },
+    { flightNumber: "GA102", departure: "CGK", arrival: "HND", date: new Date("2026-03-12") },
+    { flightNumber: "ID102", departure: "CGK", arrival: "HND", date: new Date("2026-03-12") },
+    { flightNumber: "GA103", departure: "CGK", arrival: "NRT", date: new Date("2026-03-13") },
   ]) {
     const flight = await prisma.flight.create({ data });
     flights.push(flight);
+  }
+
+  // Get all crews
+  const allCrew = await prisma.crew.findMany();
+  if (allCrew.length === 0) throw new Error("No crew found");
+
+  // Associate crews with flights using flightCrew junction table
+  for (const flight of flights) {
+    // Assign first 2 crew members to each flight
+    for (let i = 0; i < Math.min(2, allCrew.length); i++) {
+      await prisma.flightCrew.create({
+        data: {
+          flightId: flight.id,
+          crewId: allCrew[i].id,
+        },
+      });
+    }
   }
 
   // Associate flights with aircraft types (assuming Airbus 320 for these)

@@ -174,7 +174,7 @@ export type crewWhereInput = {
   email?: Prisma.StringFilter<"crew"> | string
   name?: Prisma.StringNullableFilter<"crew"> | string | null
   password?: Prisma.StringFilter<"crew"> | string
-  flights?: Prisma.FlightListRelationFilter
+  flightCrew?: Prisma.FlightCrewListRelationFilter
 }
 
 export type crewOrderByWithRelationInput = {
@@ -182,7 +182,7 @@ export type crewOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  flights?: Prisma.flightOrderByRelationAggregateInput
+  flightCrew?: Prisma.flightCrewOrderByRelationAggregateInput
 }
 
 export type crewWhereUniqueInput = Prisma.AtLeast<{
@@ -193,7 +193,7 @@ export type crewWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.crewWhereInput | Prisma.crewWhereInput[]
   name?: Prisma.StringNullableFilter<"crew"> | string | null
   password?: Prisma.StringFilter<"crew"> | string
-  flights?: Prisma.FlightListRelationFilter
+  flightCrew?: Prisma.FlightCrewListRelationFilter
 }, "id" | "email">
 
 export type crewOrderByWithAggregationInput = {
@@ -221,7 +221,7 @@ export type crewCreateInput = {
   email: string
   name?: string | null
   password: string
-  flights?: Prisma.flightCreateNestedManyWithoutCrewInput
+  flightCrew?: Prisma.flightCrewCreateNestedManyWithoutCrewInput
 }
 
 export type crewUncheckedCreateInput = {
@@ -229,7 +229,7 @@ export type crewUncheckedCreateInput = {
   email: string
   name?: string | null
   password: string
-  flights?: Prisma.flightUncheckedCreateNestedManyWithoutCrewInput
+  flightCrew?: Prisma.flightCrewUncheckedCreateNestedManyWithoutCrewInput
 }
 
 export type crewUpdateInput = {
@@ -237,7 +237,7 @@ export type crewUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  flights?: Prisma.flightUpdateManyWithoutCrewNestedInput
+  flightCrew?: Prisma.flightCrewUpdateManyWithoutCrewNestedInput
 }
 
 export type crewUncheckedUpdateInput = {
@@ -245,7 +245,7 @@ export type crewUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  flights?: Prisma.flightUncheckedUpdateManyWithoutCrewNestedInput
+  flightCrew?: Prisma.flightCrewUncheckedUpdateManyWithoutCrewNestedInput
 }
 
 export type crewCreateManyInput = {
@@ -303,58 +303,58 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type crewCreateNestedOneWithoutFlightsInput = {
-  create?: Prisma.XOR<Prisma.crewCreateWithoutFlightsInput, Prisma.crewUncheckedCreateWithoutFlightsInput>
-  connectOrCreate?: Prisma.crewCreateOrConnectWithoutFlightsInput
+export type crewCreateNestedOneWithoutFlightCrewInput = {
+  create?: Prisma.XOR<Prisma.crewCreateWithoutFlightCrewInput, Prisma.crewUncheckedCreateWithoutFlightCrewInput>
+  connectOrCreate?: Prisma.crewCreateOrConnectWithoutFlightCrewInput
   connect?: Prisma.crewWhereUniqueInput
 }
 
-export type crewUpdateOneRequiredWithoutFlightsNestedInput = {
-  create?: Prisma.XOR<Prisma.crewCreateWithoutFlightsInput, Prisma.crewUncheckedCreateWithoutFlightsInput>
-  connectOrCreate?: Prisma.crewCreateOrConnectWithoutFlightsInput
-  upsert?: Prisma.crewUpsertWithoutFlightsInput
+export type crewUpdateOneRequiredWithoutFlightCrewNestedInput = {
+  create?: Prisma.XOR<Prisma.crewCreateWithoutFlightCrewInput, Prisma.crewUncheckedCreateWithoutFlightCrewInput>
+  connectOrCreate?: Prisma.crewCreateOrConnectWithoutFlightCrewInput
+  upsert?: Prisma.crewUpsertWithoutFlightCrewInput
   connect?: Prisma.crewWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.crewUpdateToOneWithWhereWithoutFlightsInput, Prisma.crewUpdateWithoutFlightsInput>, Prisma.crewUncheckedUpdateWithoutFlightsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.crewUpdateToOneWithWhereWithoutFlightCrewInput, Prisma.crewUpdateWithoutFlightCrewInput>, Prisma.crewUncheckedUpdateWithoutFlightCrewInput>
 }
 
-export type crewCreateWithoutFlightsInput = {
+export type crewCreateWithoutFlightCrewInput = {
   id?: string
   email: string
   name?: string | null
   password: string
 }
 
-export type crewUncheckedCreateWithoutFlightsInput = {
+export type crewUncheckedCreateWithoutFlightCrewInput = {
   id?: string
   email: string
   name?: string | null
   password: string
 }
 
-export type crewCreateOrConnectWithoutFlightsInput = {
+export type crewCreateOrConnectWithoutFlightCrewInput = {
   where: Prisma.crewWhereUniqueInput
-  create: Prisma.XOR<Prisma.crewCreateWithoutFlightsInput, Prisma.crewUncheckedCreateWithoutFlightsInput>
+  create: Prisma.XOR<Prisma.crewCreateWithoutFlightCrewInput, Prisma.crewUncheckedCreateWithoutFlightCrewInput>
 }
 
-export type crewUpsertWithoutFlightsInput = {
-  update: Prisma.XOR<Prisma.crewUpdateWithoutFlightsInput, Prisma.crewUncheckedUpdateWithoutFlightsInput>
-  create: Prisma.XOR<Prisma.crewCreateWithoutFlightsInput, Prisma.crewUncheckedCreateWithoutFlightsInput>
+export type crewUpsertWithoutFlightCrewInput = {
+  update: Prisma.XOR<Prisma.crewUpdateWithoutFlightCrewInput, Prisma.crewUncheckedUpdateWithoutFlightCrewInput>
+  create: Prisma.XOR<Prisma.crewCreateWithoutFlightCrewInput, Prisma.crewUncheckedCreateWithoutFlightCrewInput>
   where?: Prisma.crewWhereInput
 }
 
-export type crewUpdateToOneWithWhereWithoutFlightsInput = {
+export type crewUpdateToOneWithWhereWithoutFlightCrewInput = {
   where?: Prisma.crewWhereInput
-  data: Prisma.XOR<Prisma.crewUpdateWithoutFlightsInput, Prisma.crewUncheckedUpdateWithoutFlightsInput>
+  data: Prisma.XOR<Prisma.crewUpdateWithoutFlightCrewInput, Prisma.crewUncheckedUpdateWithoutFlightCrewInput>
 }
 
-export type crewUpdateWithoutFlightsInput = {
+export type crewUpdateWithoutFlightCrewInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type crewUncheckedUpdateWithoutFlightsInput = {
+export type crewUncheckedUpdateWithoutFlightCrewInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -367,11 +367,11 @@ export type crewUncheckedUpdateWithoutFlightsInput = {
  */
 
 export type CrewCountOutputType = {
-  flights: number
+  flightCrew: number
 }
 
 export type CrewCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  flights?: boolean | CrewCountOutputTypeCountFlightsArgs
+  flightCrew?: boolean | CrewCountOutputTypeCountFlightCrewArgs
 }
 
 /**
@@ -387,8 +387,8 @@ export type CrewCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * CrewCountOutputType without action
  */
-export type CrewCountOutputTypeCountFlightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.flightWhereInput
+export type CrewCountOutputTypeCountFlightCrewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.flightCrewWhereInput
 }
 
 
@@ -397,7 +397,7 @@ export type crewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   name?: boolean
   password?: boolean
-  flights?: boolean | Prisma.crew$flightsArgs<ExtArgs>
+  flightCrew?: boolean | Prisma.crew$flightCrewArgs<ExtArgs>
   _count?: boolean | Prisma.CrewCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crew"]>
 
@@ -424,7 +424,7 @@ export type crewSelectScalar = {
 
 export type crewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password", ExtArgs["result"]["crew"]>
 export type crewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  flights?: boolean | Prisma.crew$flightsArgs<ExtArgs>
+  flightCrew?: boolean | Prisma.crew$flightCrewArgs<ExtArgs>
   _count?: boolean | Prisma.CrewCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type crewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -433,7 +433,7 @@ export type crewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $crewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "crew"
   objects: {
-    flights: Prisma.$flightPayload<ExtArgs>[]
+    flightCrew: Prisma.$flightCrewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -834,7 +834,7 @@ readonly fields: crewFieldRefs;
  */
 export interface Prisma__crewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  flights<T extends Prisma.crew$flightsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.crew$flightsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$flightPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  flightCrew<T extends Prisma.crew$flightCrewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.crew$flightCrewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$flightCrewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1259,27 +1259,27 @@ export type crewDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * crew.flights
+ * crew.flightCrew
  */
-export type crew$flightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type crew$flightCrewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the flight
+   * Select specific fields to fetch from the flightCrew
    */
-  select?: Prisma.flightSelect<ExtArgs> | null
+  select?: Prisma.flightCrewSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the flight
+   * Omit specific fields from the flightCrew
    */
-  omit?: Prisma.flightOmit<ExtArgs> | null
+  omit?: Prisma.flightCrewOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.flightInclude<ExtArgs> | null
-  where?: Prisma.flightWhereInput
-  orderBy?: Prisma.flightOrderByWithRelationInput | Prisma.flightOrderByWithRelationInput[]
-  cursor?: Prisma.flightWhereUniqueInput
+  include?: Prisma.flightCrewInclude<ExtArgs> | null
+  where?: Prisma.flightCrewWhereInput
+  orderBy?: Prisma.flightCrewOrderByWithRelationInput | Prisma.flightCrewOrderByWithRelationInput[]
+  cursor?: Prisma.flightCrewWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.FlightScalarFieldEnum | Prisma.FlightScalarFieldEnum[]
+  distinct?: Prisma.FlightCrewScalarFieldEnum | Prisma.FlightCrewScalarFieldEnum[]
 }
 
 /**
