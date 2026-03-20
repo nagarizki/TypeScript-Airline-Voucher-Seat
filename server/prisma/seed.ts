@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "dotenv/config";
-import { createHash } from 'crypto';
+import bcrypt from 'bcryptjs';
 
 import { PrismaClient } from '../generated/prisma/client';
 import { PrismaLibSql } from "@prisma/adapter-libsql";
@@ -11,9 +11,15 @@ const prisma = new PrismaClient({ adapter });
 
 
 async function main() {
-  const hashedPassword = createHash('sha256').update('password').digest('hex');
+  const hashedPassword = await bcrypt.hash('password', 10);
 
-  // Create multiple crews
+  // Delete related records first due to foreign key constraints
+  await prisma.flightCrew.deleteMany({});
+  
+  // Delete existing crew records to ensure fresh bcrypt hashes
+  await prisma.crew.deleteMany({});
+
+  // Create multiple crews with bcrypt hashed passwords
   for (const crewData of [
     { email: "alice@mail.com", name: "Alice", password: hashedPassword },
     { email: "bob@mail.com", name: "Bob", password: hashedPassword },
@@ -22,10 +28,8 @@ async function main() {
     { email: "eve@mail.com", name: "Eve", password: hashedPassword },
     { email: "frank@mail.com", name: "Frank", password: hashedPassword },
   ]) {
-    await prisma.crew.upsert({
-      where: { email: crewData.email },
-      update: {},
-      create: crewData,
+    await prisma.crew.create({
+      data: crewData,
     });
   }
 

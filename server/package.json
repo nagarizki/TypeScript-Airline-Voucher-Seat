@@ -20,10 +20,12 @@
   "dependencies": {
     "@prisma/adapter-libsql": "^7.5.0",
     "@prisma/client": "^7.5.0",
+    "bcryptjs": "^2.4.3",
     "hono": "^4.10.8",
     "shared": "workspace:*"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/bun": "latest",
     "prisma": "^7.5.0"
   }
