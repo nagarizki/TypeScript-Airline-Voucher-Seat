@@ -5,10 +5,12 @@ import { Link } from '@tanstack/react-router';
 function VoucherGeneratorModal({
   isOpen,
   onClose,
+  onSuccess,
   flightData
 }: {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
   flightData: FlightData | null;
 }) {
   const [allCrew, setAllCrew] = useState<{id: string; name: string | null; email: string}[]>([]);
@@ -264,6 +266,13 @@ function VoucherGeneratorModal({
         // Display the randomly chosen seat numbers
         setSeats(generateData.seats);
         setSuccess(true);
+        // Call onSuccess callback after a short delay to allow user to see success message
+        setTimeout(() => {
+          if (onSuccess) {
+            onSuccess();
+          }
+          onClose();
+        }, 1500);
       } else {
         setError(generateData.message || 'Failed to generate vouchers');
       }
@@ -513,7 +522,6 @@ export default function SeatAssignmentPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  const [saving, setSaving] = useState(false);
   const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
 
   useEffect(() => {
@@ -561,42 +569,6 @@ export default function SeatAssignmentPage() {
   if (!isAuthorized) {
     return null;
   }
-
-  const handleSeatClick = async (seat: Seat) => {
-    if (!seat.isAvailable && !selectedSeats.includes(seat.id)) {
-      // Can't select already taken seats
-      return;
-    }
-
-    setSaving(true);
-
-    try {
-      const isSelected = selectedSeats.includes(seat.id);
-      
-      const res = await fetch('/api/seats/assign', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          flightId: flight?.id,
-          seatId: seat.id,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        if (isSelected) {
-          setSelectedSeats(prev => prev.filter(id => id !== seat.id));
-        } else {
-          setSelectedSeats(prev => [...prev, seat.id]);
-        }
-      }
-    } catch (err) {
-      console.error('Error assigning seat:', err);
-    } finally {
-      setSaving(false);
-    }
-  };
 
   const getSeatsPerRow = () => {
     if (!flight?.aircraftType) return 6;
@@ -702,7 +674,7 @@ export default function SeatAssignmentPage() {
           
           {/* Action Button */}
           <Link
-            to="/available-flight"
+            to="/flights"
             className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
           >
             <svg
@@ -742,7 +714,7 @@ export default function SeatAssignmentPage() {
           </div>
           <nav className="flex items-center gap-6">
             <Link to="/" className="text-gray-600 hover:text-blue-600 font-medium">Home</Link>
-            <Link to="/available-flight" className="text-blue-600 font-medium">Flights</Link>
+            <Link to="/flights" className="text-blue-600 font-medium">Flights</Link>
             <Link to="/voucher-generator" className="text-gray-600 hover:text-blue-600 font-medium">Vouchers</Link>
           </nav>
         </div>
@@ -751,9 +723,20 @@ export default function SeatAssignmentPage() {
       {/* Main Content */}
       <main className="relative max-w-4xl mx-auto px-4 py-8">
         <div className="mb-6">
-          <Link to="/available-flight" className="text-blue-600 hover:underline">
-            ← Back to Flights
-          </Link>
+          <button
+            onClick={() => window.location.href = '/flights'}
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 group"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
+            <span className="font-medium">Back to Flights</span>
+          </button>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
@@ -822,8 +805,8 @@ export default function SeatAssignmentPage() {
         <div className="bg-white rounded-xl shadow-lg p-8">
           {/* Plane nose/windshield */}
           <div className="flex justify-center mb-8">
-            <div className="w-64 h-16 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-full flex items-center justify-center">
-              <div className="w-48 h-8 bg-gradient-to-b from-blue-200 to-blue-300 rounded-t-full border-2 border-gray-400"></div>
+            <div className="w-64 h-16 bg-linear-to-b from-gray-300 to-gray-400 rounded-t-full flex items-center justify-center">
+              <div className="w-48 h-8 bg-linear-to-b from-blue-200 to-blue-300 rounded-t-full border-2 border-gray-400"></div>
             </div>
           </div>
 
@@ -878,6 +861,26 @@ export default function SeatAssignmentPage() {
       <VoucherGeneratorModal
         isOpen={isVoucherModalOpen}
         onClose={() => setIsVoucherModalOpen(false)}
+        onSuccess={() => {
+          // Re-fetch flight data to update voucher winners
+          const params = new URLSearchParams(window.location.search);
+          const flightNum = params.get('flight') || '';
+          const flightDate = params.get('date') || '';
+          
+          fetch(`/api/flights/${flightNum}/${flightDate}`)
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                setFlight(data.flight);
+                // Pre-select voucher winner seats (they are available)
+                const voucherSeats = data.flight.seats
+                  .filter((s: Seat) => s.isVoucherWinner)
+                  .map((s: Seat) => s.id);
+                setSelectedSeats(voucherSeats);
+              }
+            })
+            .catch(err => console.error('Error refreshing flight data:', err));
+        }}
         flightData={flight}
       />
     </div>

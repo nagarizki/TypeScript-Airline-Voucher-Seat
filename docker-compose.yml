@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airline-voucher-seat
+    ports:
+      - "5173:5173"  # Client (Vite)
+      - "3000:3000"  # Server (Hono)
+    volumes:
+      # Persist database across container restarts
+      - database:/app/server/data
+      # Watch for changes in development (optional)
+      - ./server/src:/app/server/src:ro
+      - ./client/src:/app/client/src:ro
+    environment:
+      # Database URL - points to mounted volume
+      - DATABASE_URL=file:/app/server/data/dev.db
+      # Node environment
+      - NODE_ENV=development
+      # Server port
+      - PORT=3000
+      - BUN_PORT=3000
+    # Ensure database directory exists
+    restart: unless-stopped
+    networks:
+      - app-network
+    # Health check is defined in Dockerfile
+
+# Named volume for database persistence
+volumes:
+  database:
+    name: airline-voucher-db
+
+networks:
+  app-network:
+    driver: bridge

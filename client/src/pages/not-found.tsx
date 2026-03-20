@@ -57,7 +57,7 @@ export default function NotFoundPage() {
             Go to Home
           </Link>
           <Link
-            to="/available-flight"
+            to="/flights"
             className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors"
           >
             <svg

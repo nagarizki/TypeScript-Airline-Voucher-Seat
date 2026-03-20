@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react';
 
-interface Crew {
-  id: string;
-  name: string | null;
-  email: string;
-}
-
 export default function UserGuidePage() {
   const [isAuthorized, setIsAuthorized] = useState(false);
 

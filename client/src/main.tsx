@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 // Import the not-found route
-import { NotFoundRoute } from "./routes/not-found";
+import { NotFoundRoute } from "./routes/-not-found";
 
 // Create a new router instance with not-found route
 const router = createRouter({ 

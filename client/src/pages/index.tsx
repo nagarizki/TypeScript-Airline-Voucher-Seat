@@ -7,13 +7,7 @@ interface Crew {
   name: string;
 }
 
-async function hashPassword(password: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -38,12 +32,10 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const hashedPassword = await hashPassword(password);
-
       const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password: hashedPassword }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
@@ -51,7 +43,7 @@ export default function LoginPage() {
       if (data.success) {
         localStorage.setItem('crew', JSON.stringify(data.crew));
         setCrew(data.crew);
-        window.location.href = '/available-flight';
+        window.location.href = '/flights';
       } else {
         setError(data.message);
       }
@@ -67,8 +59,8 @@ export default function LoginPage() {
     return (
       <>
         {/* Hero Text with Greeting */}
-        <div id="Hero-Text" className="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto gap-[30px] mt-16">
-          <h1 className="font-extrabold text-[50px] leading-[75px]">
+        <div id="Hero-Text" className="relative flex flex-col w-full max-w-7xl px-18.75 mx-auto gap-7.5 mt-16">
+          <h1 className="font-extrabold text-[50px] leading-18.75">
             Hello, {crew.name}! <br />Explore Magical <br />Wonderful Worlds
           </h1>
           <p className="text-lg leading-8">
@@ -77,15 +69,15 @@ export default function LoginPage() {
         </div>
 
         {/* Quick Actions - Available when logged in */}
-        <div className="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto mt-16 pb-16">
-          <div className="flex flex-col rounded-[30px] p-[30px] gap-4 bg-white">
-            <h2 className="font-bold text-xl leading-[30px]">Quick Actions</h2>
+        <div className="relative flex flex-col w-full max-w-7xl px-18.75 mx-auto mt-16 pb-16">
+          <div className="flex flex-col rounded-[30px] p-7.5 gap-4 bg-white">
+            <h2 className="font-bold text-xl leading-7.5">Quick Actions</h2>
             <div className="flex items-center gap-5">
               <Link
                 to="/flights"
                 className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
               >
-                <img src="assets/images/icons/departure.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <img src="assets/images/icons/departure.svg" className="w-12.5 flex shrink-0" alt="icon" />
                 <div className="text-left">
                   <p className="font-semibold text-lg">Flights</p>
                   <p className="text-sm text-garuda-grey">View and manage flights</p>
@@ -95,7 +87,7 @@ export default function LoginPage() {
                 to="/seat-assignment"
                 className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
               >
-                <img src="assets/images/icons/seat.svg" className="w-[50px] flex shrink-0" alt="icon" />
+                <img src="assets/images/icons/seat.svg" className="w-12.5 flex shrink-0" alt="icon" />
                 <div className="text-left">
                   <p className="font-semibold text-lg">Seat Assignment</p>
                   <p className="text-sm text-garuda-grey">Assign seats to passengers</p>
@@ -105,7 +97,7 @@ export default function LoginPage() {
                 to="/voucher-generator"
                 className="flex items-center rounded-[20px] border border-[#E8EFF7] p-5 gap-4 hover:bg-garuda-bg-grey transition-all duration-300"
               >
-                <div className="w-[50px] h-[50px] rounded-full bg-[#FFA44B] flex items-center justify-center flex shrink-0">
+                <div className="w-12.5 h-12.5 rounded-full bg-[#FFA44B] flex items-center justify-center shrink-0">
                   <img src="assets/images/icons/note-add-white.svg" className="w-6 h-6" alt="icon" />
                 </div>
                 <div className="text-left">
