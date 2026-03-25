@@ -20,7 +20,7 @@ A full-stack TypeScript monorepo application for airline voucher management and 
 ### Backend
 - **[Hono](https://hono.dev)** - Lightweight web framework for REST APIs
 - **[Prisma](https://www.prisma.io/)** - Type-safe ORM for database operations
-- **[SQLite](https://www.sqlite.org/)** - Embedded database for data storage
+- **[SQLite](https://www.sqlite.org/)** - Embedded database (stored in Docker volume, not in repo)
 
 ### Frontend
 - **[React](https://react.dev)** - UI library for building user interfaces
@@ -99,14 +99,45 @@ This will automatically:
 
 ### 3. Database Setup
 
+The project uses SQLite with Prisma ORM. The database is stored in a Docker volume, not in the repository - this ensures data persistence and cross-platform compatibility.
+
+#### Option A: Docker (Recommended)
+
+Start the application with Docker Compose:
+
+```bash
+# Build and start the containers
+docker-compose up --build
+```
+
+The SQLite database will be stored in a Docker named volume (`airline-voucher-db`), not in the repository. The Dockerfile automatically runs Prisma generate and migrations during build.
+
+#### Option B: Local SQLite (Not Recommended)
+
+If you want to run SQLite locally without Docker, update `server/.env`:
+
+```env
+DATABASE_URL="file:./vouchers.db"
+```
+
+> ⚠️ **Warning**: Storing the database file in the repository is not safe and may cause issues with cross-platform development.
+
 The project uses SQLite with Prisma ORM. The database is automatically set up during installation:
 
 ```bash
 # Generate Prisma Client
-cd server && bunx prisma generate
 
-# Run Database Migrations
-cd server && bunx prisma migrate dev
+cd server
+bunx prisma generate
+
+# Run Database Migrations (from server directory)
+
+bunx prisma migrate dev
+
+# Run Prisma Seeder
+
+bunx prisma db seed
+
 ```
 
 ## Running the Application
@@ -116,7 +147,7 @@ cd server && bunx prisma migrate dev
 Run both backend and frontend simultaneously with hot reload:
 
 ```bash
-# Run all workspaces in development mode
+# Run all workspaces in development mode (run from parent directory)
 bun run dev
 ```
 
@@ -224,11 +255,15 @@ The backend provides the following REST API endpoints:
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/flights` | Get all available flights |
-| GET | `/api/flights/:id` | Get flight details |
-| GET | `/api/seats` | Get all seats |
-| GET | `/api/seats/:aircraftTypeId` | Get seats by aircraft type |
+| GET | `/api/flights/search` | Search flights by query |
+| GET | `/api/flights/:flightNumber` | Get flight by flight number |
+| GET | `/api/flights/:flightNumber/:date` | Get flight by number and date |
+| POST | `/api/flights` | Create new flight |
+| POST | `/api/seats/assign` | Assign seat to flight |
 | POST | `/api/voucher/check` | Check voucher validity |
 | POST | `/api/voucher/generate` | Generate new voucher |
+| GET | `/api/aircraft-types` | Get all aircraft types |
+| GET | `/api/crew` | Get all crew members |
 | POST | `/login` | User authentication |
 
 ## Environment Variables
@@ -236,7 +271,9 @@ The backend provides the following REST API endpoints:
 ### Server (.env)
 
 ```env
-DATABASE_URL="file:./dev.db"
+# SQLite database (stored in Docker volume, not in repo)
+DATABASE_URL="file:/app/server/data/vouchers.db"
+
 PORT=3000
 BUN_PORT=3000
 ```
@@ -264,12 +301,11 @@ kill <PID>
 
 ### Database Issues
 
-Reset the database:
+Reset the database (remove and recreate):
 
 ```bash
 cd server
-rm -f prisma/dev.db
-bunx prisma migrate dev
+bunx prisma migrate reset
 ```
 
 ### Node Modules Issues

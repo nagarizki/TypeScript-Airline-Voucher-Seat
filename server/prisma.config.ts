@@ -2,13 +2,16 @@
 import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
+// Get DATABASE_URL with fallback - check if env var exists first
+const databaseUrl = process.env.DATABASE_URL || "file:./data/dev.db";
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
-    seed: `bun run prisma/seed.ts`, 
+    seed: `bun run prisma/seed.ts`,
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: databaseUrl,
   },
 });

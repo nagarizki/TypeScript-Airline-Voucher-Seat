@@ -18,8 +18,8 @@ COPY client/package.json ./client/
 COPY server/package.json ./server/
 COPY shared/package.json ./shared/
 
-# Install dependencies
-RUN bun install --frozen-lockfile
+# Install dependencies (without frozen lockfile to handle version differences)
+RUN bun install --ignore-scripts
 
 # Copy all source code
 COPY . .

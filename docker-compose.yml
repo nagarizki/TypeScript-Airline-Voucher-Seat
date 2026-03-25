@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Main application service
   app:
@@ -9,7 +7,7 @@ services:
     container_name: airline-voucher-seat
     ports:
       - "5173:5173"  # Client (Vite)
-      - "3000:3000"  # Server (Hono)
+      - "3001:3000"  # Server (Hono)
     volumes:
       # Persist database across container restarts
       - database:/app/server/data
