@@ -134,7 +134,7 @@ bunx prisma generate
 
 bunx prisma migrate dev
 
-# Run Prisma Seeder
+# Run Prisma Seeder (from server directory)
 
 bunx prisma db seed
 
