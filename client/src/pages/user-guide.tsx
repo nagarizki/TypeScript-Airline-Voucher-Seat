@@ -32,8 +32,15 @@ export default function UserGuidePage() {
               <li>Flight number</li>
               <li>Departure and arrival airports</li>
               <li>Flight date</li>
+              <li>Crews assigned to the flight</li>
               <li>Aircraft type and seat configuration</li>
             </ul>
+            <p className="text-gray-600 mt-3">
+              Click on Manage Seats to view its seat assignment and voucher information.
+            </p>
+            <p className="text-gray-600 mt-1">
+              Click on Add Flight to add a new flight to the system.
+            </p>
           </section>
 
           {/* Seat Assignment Section */}
@@ -43,10 +50,11 @@ export default function UserGuidePage() {
               The Seat Assignment page allows you to view and manage seat assignments for each flight.
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+              <li>Click on a flight on the flights page to view its seat map</li>
               <li>View all seats in the aircraft layout</li>
               <li>Gray seats are occupied</li>
               <li>Red seats indicate Voucher Winners (lucky seats)</li>
-              <li>Click on a flight to view its seat map</li>
+              <li>Click on Generate Vouchers to create vouchers for the selected flight. You will be prompted to fill the details to generate the vouchers.</li>
             </ul>
           </section>
 
@@ -58,9 +66,10 @@ export default function UserGuidePage() {
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
               <li>Select a flight and date</li>
-              <li>Choose crew members who are generating the vouchers</li>
+              <li>Choose crew members</li>
               <li>The system randomly selects 3 seats as voucher winners</li>
               <li>Each voucher is assigned to 3 lucky passengers</li>
+              <li>There will be no duplicate seats</li>
               <li>Vouchers can only be generated once per flight</li>
             </ul>
           </section>

@@ -151,6 +151,11 @@ Run both backend and frontend simultaneously with hot reload:
 bun run dev
 ```
 
+# default login account
+
+email : alice@mail.com (or any other email from the seeder)
+password : password
+
 This will start:
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:3000
